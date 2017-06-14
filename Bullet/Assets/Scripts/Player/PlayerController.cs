@@ -63,7 +63,6 @@ namespace Bullet.Player
             { // Object Pool??
                 shotTime = Time.time + shotDelay;
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                Util.Func.WaitAndRunAction(bulletLife, () => { Debug.Log("Invoked"); Destroy(bullet); });
                 bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bulletForce);
             }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -15,5 +16,14 @@ public class GameMaster : MonoBehaviour {
         {
             Application.Quit();
         }
-	}
+        if (Input.GetKey(KeyCode.R))
+        {
+            Reload();
+        }
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -10,12 +10,15 @@ namespace Bullet.Items
     
         [SerializeField]
         private float maxY = 5f;
+        [SerializeField]
+        private float lifeTime = 3f;
 
         private new Transform transform;
 
         void Awake()
         {
             transform = GetComponent<Transform>();
+            StartCoroutine(Util.Func.WaitAndRunAction(lifeTime, () => { Destroy(gameObject); }));
         }
 
         void Update()

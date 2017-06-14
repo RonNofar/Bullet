@@ -25,6 +25,7 @@ namespace Bullet.Enemy
         private Transform expTransform;
         private SpriteRenderer expSR;
         private Vector2 orgScale;
+        private bool isExploding = false;
 
         private float startTime = 0f;
         private float timeRatio = 0f;
@@ -33,8 +34,18 @@ namespace Bullet.Enemy
         private new Transform transform;
         private SpriteRenderer SR;
         private new Collider2D collider;
+        private new Rigidbody2D rigidbody;
+
+        [HideInInspector]
+        public float orgGravity;
 
         // Use this for initialization
+        public void Awake()
+        {
+            rigidbody = GetComponent<Rigidbody2D>();
+            orgGravity = rigidbody.gravityScale;
+        }
+
         void Start()
         {
             startTime = Time.time;
@@ -48,8 +59,16 @@ namespace Bullet.Enemy
             explosion.SetActive(false);
         }
 
-        // Update is called once per frame
         void Update()
+        {
+            if (!isExploding)
+            {
+                Move();
+                DeathCheck();
+            }
+        }
+
+        private void Move() // to be called in Update 
         {
             if (timeRatio < 1f)
             {
@@ -66,7 +85,9 @@ namespace Bullet.Enemy
                     startTime = Time.time;
                 }
             }
-
+        }
+        private void DeathCheck() // to be called in Update 
+        {
             if (transform.position.y < minY) Destroy(gameObject);
         }
 
@@ -74,7 +95,7 @@ namespace Bullet.Enemy
         {
             if (collision.transform.tag == "Bullet")
             {
-                Debug.Log("Bullet");
+                //Debug.Log("Bullet");
                 StartCoroutine(Explosion());
             }
             if (collision.transform.tag == "Player")
@@ -108,6 +129,9 @@ namespace Bullet.Enemy
                         startTime = Time.time;
                         timeRatio = 0f;
                         inOut = false;
+                        isExploding = true;
+                        rigidbody.isKinematic = true;
+                        rigidbody.velocity = Vector2.zero;
                     }
                     else
                     {
@@ -120,6 +144,15 @@ namespace Bullet.Enemy
             // set org obj fade to 0
             // scale from 1 to 0.5 and fade from 1 to 0
 
+        }
+
+        public void SetGravity(float amount)
+        {
+            rigidbody.gravityScale = amount;
+        }
+        public float GetGravity()
+        {
+            return rigidbody.gravityScale;
         }
     }
 }

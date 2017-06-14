@@ -42,7 +42,9 @@ namespace Bullet.Enemy
             int totalEnemies = (int)Mathf.Round(10f + wave * 0.4f);
             for (int i = 0; i < totalEnemies; ++i)
             {
-                Instantiate(enemyPrefab, transform.position, transform.rotation);
+                GameObject enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+                enemy.GetComponent<EnemyHandler>().SetGravity( // needs clean up >.<
+                    enemy.GetComponent<EnemyHandler>().orgGravity * Mathf.Ceil(wave * 0.25f));
                 spawnTime = Time.time + spawnDelay;
                 while (Time.time < spawnTime)
                 {
