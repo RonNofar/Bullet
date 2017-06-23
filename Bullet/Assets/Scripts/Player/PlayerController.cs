@@ -31,6 +31,10 @@ namespace Bullet.Player
 
         private float shotTime = 0f;
 
+        [Header("Explosion")]
+        [SerializeField]
+        private GameObject explosionPrefab;
+
         [Header("Maintenance Variables")]
         [SerializeField]
         private float RayRange = 1000f;
@@ -48,6 +52,20 @@ namespace Bullet.Player
         void Awake()
         {
             Instance = this;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if((col.tag == "EnemyShip") || (col.tag == "EnemyBullet"))
+            {
+                PlayExplosion();
+            }
+        }
+
+        void PlayExplosion()
+        {
+            GameObject explosion = Instantiate(explosionPrefab);
+            explosion.transform.position = transform.position;
         }
 
         public void KeyMove(Vector2 direction)

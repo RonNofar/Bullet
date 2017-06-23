@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject explosionPrefab;
     float speed;
 
 	// Use this for initialization
@@ -26,4 +28,19 @@ public class EnemyControl : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if((col.tag == "PlayerShip") || (col.tag == "PlayerBullet"))
+        {
+            PlayExplosion();
+            Destroy(gameObject);
+        }
+    }
+
+    void PlayExplosion()
+    {
+        GameObject explosion = Instantiate(explosionPrefab);
+        explosion.transform.position = transform.position;
+    }
 }
