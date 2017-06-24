@@ -18,8 +18,7 @@ namespace Bullet.Player
         private float speed = 0.1f;
 
         [Header("Bullet")]
-        [SerializeField]
-        private int bulletLevel = 1;
+        public int bulletLevel = 1;
         [SerializeField]
         private GameObject[] bulletPositionL1;
         [SerializeField]
@@ -63,6 +62,7 @@ namespace Bullet.Player
             if((col.tag == "EnemyShip") || (col.tag == "EnemyBullet"))
             {
                 PlayExplosion();
+                score -= Random.Range(100, 500);
             }
         }
 

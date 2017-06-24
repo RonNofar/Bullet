@@ -38,6 +38,7 @@ namespace Bullet.Player
             if (col.tag == "EnemyShip")
             {
                 Destroy(gameObject);
+                Player.PlayerController._instance.score += Random.Range(100, 500);
             }
         }
     }
