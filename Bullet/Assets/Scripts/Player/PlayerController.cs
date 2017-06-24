@@ -19,7 +19,11 @@ namespace Bullet.Player
 
         [Header("Bullet")]
         [SerializeField]
-        private GameObject bulletPosition;
+        private int bulletLevel = 1;
+        [SerializeField]
+        private GameObject[] bulletPositionL1;
+        [SerializeField]
+        private GameObject[] bulletPositionL2;
         [SerializeField]
         private GameObject bulletPrefab;
         [SerializeField]
@@ -108,11 +112,38 @@ namespace Bullet.Player
             if (shotTime < Time.time)
             { // Object Pool??
                 shotTime = Time.time + shotDelay;
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet.transform.position = bulletPosition.transform.position;
+
+                if (bulletLevel == 1)
+                {
+                    GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    bullet.transform.position = bulletPositionL1[0].transform.position;
+                }
+                else if (bulletLevel ==2)
+                {
+                    GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    bullet1.transform.position = bulletPositionL2[0].transform.position;
+                    GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    bullet2.transform.position = bulletPositionL2[1].transform.position;
+                }
                 //bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bulletForce);
             }
 
+        }
+
+        public GameObject[] GetBulletPositionFromLevel(int level)
+        {
+            switch (level)
+            {
+                case 0:
+                    Debug.Log("ERROR: level must be greater than 0.");
+                    return null;
+                case 1:
+                    return bulletPositionL1;
+                case 2:
+                    return bulletPositionL2;
+            }
+            Debug.Log("ERROR: invalid level.");
+            return null;
         }
     }
 }

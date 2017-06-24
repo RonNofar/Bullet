@@ -19,12 +19,15 @@ namespace Bullet.Player
 
         void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) || Input.GetButton("Fire1"))
             {
-                if (GameMaster.Instance.isMouseMovement) player.MouseMove();
                 player.Shoot();
             }
-            if (!GameMaster.Instance.isMouseMovement)
+            if (GameMaster.Instance.isMouseMovement)
+            {
+                player.MouseMove();
+            }
+            else
             {
                 float x = Input.GetAxisRaw("Horizontal");
                 float y = Input.GetAxisRaw("Vertical");
