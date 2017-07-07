@@ -13,6 +13,13 @@ namespace Bullet.Player
             set { _instance = value; }
         }
 
+        [Header("Movement")]
+        [SerializeField]
+        private float speed = 0.1f;
+
+        [Header("Bullet")]
+        [SerializeField]
+        private GameObject bulletPosition;
         [SerializeField]
         private GameObject bulletPrefab;
         [SerializeField]
@@ -23,6 +30,10 @@ namespace Bullet.Player
         private float bulletLife = 2f;
 
         private float shotTime = 0f;
+
+        [Header("Explosion")]
+        [SerializeField]
+        private GameObject explosionPrefab;
 
         [Header("Maintenance Variables")]
         [SerializeField]
@@ -43,7 +54,42 @@ namespace Bullet.Player
             Instance = this;
         }
 
-        public void Move()
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if((col.tag == "EnemyShip") || (col.tag == "EnemyBullet"))
+            {
+                PlayExplosion();
+            }
+        }
+
+        void PlayExplosion()
+        {
+            GameObject explosion = Instantiate(explosionPrefab);
+            explosion.transform.position = transform.position;
+        }
+
+        public void KeyMove(Vector2 direction)
+        {
+            Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+            Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+
+            max.x = max.x - 0.225f; // <-- Use half of player bounds.x here
+            min.x = min.x + 0.225f;
+
+            max.y = max.y - 0.285f;
+            min.y = min.y + 0.285f;
+
+            Vector2 pos = transform.position;
+
+            pos += direction * speed * Time.deltaTime;
+
+            pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+            pos.y = Mathf.Clamp(pos.y, min.y, max.y);
+
+            transform.position = pos;
+        }
+
+        public void MouseMove()
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,7 +109,8 @@ namespace Bullet.Player
             { // Object Pool??
                 shotTime = Time.time + shotDelay;
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bulletForce);
+                bullet.transform.position = bulletPosition.transform.position;
+                //bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bulletForce);
             }
 
         }
