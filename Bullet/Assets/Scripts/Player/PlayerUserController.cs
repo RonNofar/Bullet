@@ -19,10 +19,22 @@ namespace Bullet.Player
 
         void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) || Input.GetButton("Fire1"))
             {
-                player.Move();
                 player.Shoot();
+            }
+            if (GameMaster.Instance.isMouseMovement)
+            {
+                player.MouseMove();
+            }
+            else
+            {
+                float x = Input.GetAxisRaw("Horizontal");
+                float y = Input.GetAxisRaw("Vertical");
+
+                Vector2 direction = new Vector2(x, y).normalized;
+
+                player.KeyMove(direction);
             }
         }
     }
