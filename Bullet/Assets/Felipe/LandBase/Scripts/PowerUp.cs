@@ -8,23 +8,23 @@ public class PowerUp : MonoBehaviour {
     public int PowerUpPriceNumber;
 
     public GameObject[] powerLevelGlow;
+    public static int CurrentPowerLevel;
     public bool timeToChangePowerLevel;
-    public static int CurrentPowerLevel; 
+
     //true= add // false= subtract
     public bool powerLevelAddSubtract ;
     public int NotConfirmedPowerLevel;
 
 
-    public int testvarCurentPower=5;
-    public int testvarPowerUpPriceNumber=0;
+    public int varCurentPower;
     public int Lvl_0PowerUpPriceNumber=10;
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
         timeToChangePowerLevel = false;
         NotConfirmedPowerLevel = 0;
-        CurrentPowerLevel = testvarCurentPower;
+        //CurrentPowerLevel = testvarCurentPower;
 
         //PowerUpPriceNumber = testvarPowerUpPriceNumber;
         if (CurrentPowerLevel == 0)
@@ -52,7 +52,7 @@ public class PowerUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        testvarCurentPower = CurrentPowerLevel;
+        varCurentPower = CurrentPowerLevel;
         if (timeToChangePowerLevel)
         {
             timeToChangePowerLevel = false;
@@ -73,10 +73,14 @@ public class PowerUp : MonoBehaviour {
             }
         }
 	}
-
+    public void SavePoints()
+    {   
+        CurrentPowerLevel = CurrentPowerLevel + NotConfirmedPowerLevel;
+        NotConfirmedPowerLevel = 0;
+    }
     public void AddLevelPowerUp()
     {
-        if (CurrentPowerLevel <10 && NotConfirmedPowerLevel < 10)
+        if (CurrentPowerLevel <10 && NotConfirmedPowerLevel < 10 - CurrentPowerLevel)
         {
             powerLevelAddSubtract = true;
             timeToChangePowerLevel = true;

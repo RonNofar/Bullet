@@ -4,7 +4,7 @@ using System.Collections;
 public class Canvas : MonoBehaviour {
     public bool CloseCanvas;
 
-
+    public GameObject ShopPowerUp1;
     public GameObject ShopWindow;
 
     public bool timeToGlowFrame;
@@ -27,7 +27,7 @@ public class Canvas : MonoBehaviour {
             Cursor.visible = false;
             CloseCanvas = false;
             ShopWindow.SetActive(false);
-        }
+        }else
         if (timeToGlowFrame){
             StartCoroutine(OnOffFrame());
         }
@@ -50,6 +50,7 @@ public class Canvas : MonoBehaviour {
     }
     public void CloseCanvasFunction()
     {
+        //ShopPowerUp1.GetComponent<PowerUp>().Start();
         CloseCanvas = true;
     }
 
