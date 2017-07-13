@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -7,11 +8,8 @@ public class Player : MonoBehaviour
 
     public bool stepingOnShop;
     public GameObject ShopCanvas;
-    public GameObject ShopPowerUp1;
-    public GameObject ShopPowerUp2;
-    public GameObject ShopPowerUp3;
-    public GameObject ShopPowerUp4;
-    public GameObject ShopPowerUp5;
+    public GameObject PlayerObj;
+
 
     public float maxJumpHeight = 4;
     public float minJumpHeight = 1;
@@ -130,8 +128,14 @@ public class Player : MonoBehaviour
             velocity.y = 0;
         }
 
+            if (controller.collisions.ReadyToLeave) {
+                if (Input.GetKeyUp(KeyCode.Return))
+                {
+                    SceneManager.LoadScene("_main");
+                }
 
-        if (controller.collisions.Onshop)
+            }
+            if (controller.collisions.Onshop)
         {
             if (Input.GetKeyUp(KeyCode.Return))
             {
@@ -139,16 +143,12 @@ public class Player : MonoBehaviour
                 {
                     ShopCanvas.SetActive(true);
                     Cursor.visible = true;
-                    ShopPowerUp1.GetComponent<PowerUp>().Start();
-                    ShopPowerUp2.GetComponent<PowerUp>().Start();
-                    ShopPowerUp3.GetComponent<PowerUp>().Start();
-                    ShopPowerUp4.GetComponent<PowerUp>().Start();
-                    ShopPowerUp5.GetComponent<PowerUp>().Start();
+                    ShopCanvas.GetComponent<Canvas>().Start();
                 }
                 else
                 {
                     //Ask for script to hide it self
-                    ShopCanvas.GetComponent<Canvas>().CloseCanvas = true;
+                    ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
              
                     //ShopCanvas.SetActive(false);
                     // Cursor.visible = false;
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         }
         else if (ShopCanvas.activeInHierarchy) {
             //Ask for script to hide it self
-            ShopCanvas.GetComponent<Canvas>().CloseCanvas = true;
+            ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
             //ShopCanvas.SetActive(false);
             //Cursor.visible = false;
         }

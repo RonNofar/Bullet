@@ -165,6 +165,10 @@ public class Controller2D : RaycastController
                 {
                     collisions.Onshop = true;
                 }
+                if (hit.collider.tag == "GoToLevel")
+                {
+                    collisions.ReadyToLeave = true;
+                }
             }
         }
 
@@ -239,6 +243,8 @@ public class Controller2D : RaycastController
     public struct CollisionInfo
     {
         public bool Onshop;
+        public bool ReadyToLeave;
+
         public bool above, below;
         public bool left, right;
 
@@ -252,6 +258,7 @@ public class Controller2D : RaycastController
         public void Reset()
         {
             Onshop = false;
+            ReadyToLeave = false;
 
             above = below = false;
             left = right = false;

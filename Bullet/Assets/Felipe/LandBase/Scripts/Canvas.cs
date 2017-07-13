@@ -13,7 +13,8 @@ public class Canvas : MonoBehaviour {
     public GameObject ShopWindow;
 
     public Text PlayerMoneyText;
-    public int PlayerMoneyCanvas;
+    public float ConfirmedPlayerMoneyCanvas;
+    public float NotConfirmedPlayerMoneyCanvas;
 
     public GameObject player;
     private PlayerItems PlayerItemsScript; 
@@ -22,8 +23,10 @@ public class Canvas : MonoBehaviour {
     public GameObject FrameGlowOn;
     public GameObject FrameGlowOff;
     // Use this for initialization
-    void Start() {
+    public void Start() {
         PlayerItemsScript = player.GetComponent<PlayerItems>();
+        ConfirmedPlayerMoneyCanvas = PlayerItemsScript.playerMoneyNumber;
+        NotConfirmedPlayerMoneyCanvas = ConfirmedPlayerMoneyCanvas;
 
         for (int i = 0; i < Item.TotalNumberOfItems; i++)
         {
@@ -46,12 +49,16 @@ public class Canvas : MonoBehaviour {
     void Update() {
 
         //Check Money 
-        PlayerMoneyCanvas = PlayerItemsScript.playerMoneyNumber;
-        PlayerMoneyText.text="$ "+PlayerMoneyCanvas.ToString();
+        PlayerMoneyText.text="$ "+NotConfirmedPlayerMoneyCanvas.ToString("F0");
         //Make shure all resets defolt position on disactivating script
         if (CloseCanvas)
         {
-            timeToGlowFrame = true;
+            for (int i = 0; i < Item.TotalNumberOfItems; i++)
+            {
+                ShopItem[i].SetActive(false);
+            }
+
+                timeToGlowFrame = true;
             Cursor.visible = false;
             CloseCanvas = false;
             ShopWindow.SetActive(false);
@@ -78,7 +85,8 @@ public class Canvas : MonoBehaviour {
     }
     public void CloseCanvasFunction()
     {
-        //ShopPowerUp1.GetComponent<PowerUp>().Start();
+        NotConfirmedPlayerMoneyCanvas = ConfirmedPlayerMoneyCanvas;
+        player.GetComponent<PlayerItems>().playerMoneyNumber = ConfirmedPlayerMoneyCanvas;
         CloseCanvas = true;
     }
 /*

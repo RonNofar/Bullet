@@ -87,13 +87,16 @@ public class PowerUp : MonoBehaviour {
     {   
         CurrentPowerLevel = CurrentPowerLevel + NotConfirmedPowerLevel;
         ShopItemsScript.itemsOnShop[ThisItemID].SetLevel(CurrentPowerLevel);
+
+        ShopItemsScript.ConfirmedPlayerMoneyCanvas= ShopItemsScript.NotConfirmedPlayerMoneyCanvas;
         NotConfirmedPowerLevel = 0;
         //Add here save sistem for this power Up
     }
     public void AddLevelPowerUp()
     {
-        if (CurrentPowerLevel <10 && NotConfirmedPowerLevel < 10 - CurrentPowerLevel)
+        if (CurrentPowerLevel <10 && NotConfirmedPowerLevel < 10 - CurrentPowerLevel && (ShopItemsScript.NotConfirmedPlayerMoneyCanvas- PowerUpPriceNumber>-1))
         {
+            ShopItemsScript.NotConfirmedPlayerMoneyCanvas = ShopItemsScript.NotConfirmedPlayerMoneyCanvas - PowerUpPriceNumber;
             powerLevelAddSubtract = true;
             timeToChangePowerLevel = true;
         }
@@ -103,9 +106,15 @@ public class PowerUp : MonoBehaviour {
     {
         if (NotConfirmedPowerLevel > 0 && NotConfirmedPowerLevel > 0)
         {
+            ShopItemsScript.NotConfirmedPlayerMoneyCanvas= ShopItemsScript.NotConfirmedPlayerMoneyCanvas + (PowerUpPriceNumber / ShopItemsScript.itemsOnShop[ThisItemID].GetMultiplier());
+
             powerLevelAddSubtract = false;
             timeToChangePowerLevel = true;
         }
 
+    }
+    void OnEnable()
+    {
+        Start();
     }
 }
