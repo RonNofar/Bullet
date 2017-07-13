@@ -1,25 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Canvas : MonoBehaviour {
     public bool CloseCanvas;
+    //All Shop Items OBJ
+    public GameObject[] ShopItem= new GameObject[5];
+    //Copy Of Player Items
+    public Item[] itemsOnShop = new Item[5];
 
-    public GameObject ShopPowerUp1;
+    //Shop Canvas OBJ
     public GameObject ShopWindow;
+
+    public Text PlayerMoneyText;
+    public int PlayerMoneyCanvas;
+
+    public GameObject player;
+    private PlayerItems PlayerItemsScript; 
 
     public bool timeToGlowFrame;
     public GameObject FrameGlowOn;
     public GameObject FrameGlowOff;
     // Use this for initialization
-    void Start () {
+    void Start() {
+        PlayerItemsScript = player.GetComponent<PlayerItems>();
+
+        for (int i = 0; i < Item.TotalNumberOfItems; i++)
+        {
+            ShopItem[i].SetActive(true);
+            itemsOnShop[i] = PlayerItemsScript.itemsUnlocked[i];
+            ShopItem[i].GetComponent<PowerUp>().ThisItemID= itemsOnShop[i].GetID();
+        }
+        for (int i = 0; i < Item.TotalNumberOfItems; i++)
+        {
+            itemsOnShop[i].printVar();
+        }
+
         CloseCanvas = false;
         timeToGlowFrame = true;
         FrameGlowOn.SetActive(false);
         FrameGlowOff.SetActive(true);
 
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update() {
+
+        //Check Money 
+        PlayerMoneyCanvas = PlayerItemsScript.playerMoneyNumber;
+        PlayerMoneyText.text="$ "+PlayerMoneyCanvas.ToString();
         //Make shure all resets defolt position on disactivating script
         if (CloseCanvas)
         {
@@ -27,13 +55,13 @@ public class Canvas : MonoBehaviour {
             Cursor.visible = false;
             CloseCanvas = false;
             ShopWindow.SetActive(false);
-        }else
-        if (timeToGlowFrame){
+        } else
+        if (timeToGlowFrame) {
             StartCoroutine(OnOffFrame());
         }
-	}
+    }
     //light Flick shop frame
-    IEnumerator OnOffFrame(){
+    IEnumerator OnOffFrame() {
         timeToGlowFrame = false;
         yield return new WaitForSeconds(3f);
         if (FrameGlowOn.activeInHierarchy)
@@ -41,7 +69,7 @@ public class Canvas : MonoBehaviour {
             FrameGlowOn.SetActive(false);
             FrameGlowOff.SetActive(true);
         }
-        else if(FrameGlowOff.activeInHierarchy)
+        else if (FrameGlowOff.activeInHierarchy)
         {
             FrameGlowOn.SetActive(true);
             FrameGlowOff.SetActive(false);
@@ -53,6 +81,9 @@ public class Canvas : MonoBehaviour {
         //ShopPowerUp1.GetComponent<PowerUp>().Start();
         CloseCanvas = true;
     }
-
-
+/*
+    void SaveAllPoints() {
+        ShopPowerUp1.GetComponent<PowerUp>().Start();
+    }
+*/
 }

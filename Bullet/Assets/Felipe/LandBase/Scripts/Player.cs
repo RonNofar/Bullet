@@ -8,7 +8,10 @@ public class Player : MonoBehaviour
     public bool stepingOnShop;
     public GameObject ShopCanvas;
     public GameObject ShopPowerUp1;
-    public bool ExitButtonClicked; 
+    public GameObject ShopPowerUp2;
+    public GameObject ShopPowerUp3;
+    public GameObject ShopPowerUp4;
+    public GameObject ShopPowerUp5;
 
     public float maxJumpHeight = 4;
     public float minJumpHeight = 1;
@@ -130,14 +133,19 @@ public class Player : MonoBehaviour
 
         if (controller.collisions.Onshop)
         {
-            if (Input.GetKeyUp(KeyCode.Return)|| ExitButtonClicked)
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 if (!ShopCanvas.activeInHierarchy)
                 {
                     ShopCanvas.SetActive(true);
                     Cursor.visible = true;
                     ShopPowerUp1.GetComponent<PowerUp>().Start();
-                }else
+                    ShopPowerUp2.GetComponent<PowerUp>().Start();
+                    ShopPowerUp3.GetComponent<PowerUp>().Start();
+                    ShopPowerUp4.GetComponent<PowerUp>().Start();
+                    ShopPowerUp5.GetComponent<PowerUp>().Start();
+                }
+                else
                 {
                     //Ask for script to hide it self
                     ShopCanvas.GetComponent<Canvas>().CloseCanvas = true;

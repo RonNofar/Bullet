@@ -2,13 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//Ps this GameObject script must be unactive on game start (because Script Canvas will initialize it)
 public class PowerUp : MonoBehaviour {
 
+    public int ThisItemID;
+
+    public GameObject Shop;
+    private Canvas ShopItemsScript;
+
     public Text PowerUpTextPrice;
-    public int PowerUpPriceNumber;
+    public float PowerUpPriceNumber;
 
     public GameObject[] powerLevelGlow;
-    public static int CurrentPowerLevel;
+    public int CurrentPowerLevel;
     public bool timeToChangePowerLevel;
 
     //true= add // false= subtract
@@ -17,13 +23,16 @@ public class PowerUp : MonoBehaviour {
 
 
     public int varCurentPower;
-    public int Lvl_0PowerUpPriceNumber=10;
+    public int Lvl_0PowerUpPriceNumber;
 
     // Use this for initialization
     public void Start()
     {
+        ShopItemsScript = Shop.GetComponent<Canvas>();
+        Lvl_0PowerUpPriceNumber = 100;
         timeToChangePowerLevel = false;
         NotConfirmedPowerLevel = 0;
+        CurrentPowerLevel=ShopItemsScript.itemsOnShop[ThisItemID].GetLevel();
         //CurrentPowerLevel = testvarCurentPower;
 
         //PowerUpPriceNumber = testvarPowerUpPriceNumber;
@@ -60,23 +69,26 @@ public class PowerUp : MonoBehaviour {
             {
                 NotConfirmedPowerLevel ++;
                 powerLevelGlow[(NotConfirmedPowerLevel + CurrentPowerLevel - 1)].SetActive(true);
-                PowerUpPriceNumber = PowerUpPriceNumber * 2;
-                PowerUpTextPrice.text = PowerUpPriceNumber.ToString();
+                //ShopItemsScript.itemsOnShop[ThisItemID].GetMultiplier();
+                PowerUpPriceNumber = PowerUpPriceNumber * ShopItemsScript.itemsOnShop[ThisItemID].GetMultiplier();
+                PowerUpTextPrice.text = PowerUpPriceNumber.ToString("F0");
             }
             else
             {
                 NotConfirmedPowerLevel --;
                 powerLevelGlow[(NotConfirmedPowerLevel + CurrentPowerLevel )].SetActive(false);
-                PowerUpPriceNumber = PowerUpPriceNumber / 2;
-                PowerUpTextPrice.text = PowerUpPriceNumber.ToString();
+                PowerUpPriceNumber = PowerUpPriceNumber / ShopItemsScript.itemsOnShop[ThisItemID].GetMultiplier();
+                PowerUpTextPrice.text = PowerUpPriceNumber.ToString("F0");
 
             }
         }
 	}
-    public void SavePoints()
+    void SavePoints()
     {   
         CurrentPowerLevel = CurrentPowerLevel + NotConfirmedPowerLevel;
+        ShopItemsScript.itemsOnShop[ThisItemID].SetLevel(CurrentPowerLevel);
         NotConfirmedPowerLevel = 0;
+        //Add here save sistem for this power Up
     }
     public void AddLevelPowerUp()
     {
