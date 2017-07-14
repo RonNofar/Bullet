@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class PlayerItems : MonoBehaviour {
 
     public GameObject Shop;
-    public float playerMoneyNumber;
 
+    public float playerMoneyNumber;
     public Item[] itemsUnlocked = new Item[5];
-    public float Money;
+
     // Use this for initialization
     void Start ()
     { 
