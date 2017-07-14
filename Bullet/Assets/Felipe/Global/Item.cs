@@ -62,18 +62,18 @@ public class Item{
             {
                 this.itemName = "Energy Cristal";
                 this.itemDescription = "Empowers the basic wepon with a more powerfull attack";
-                this.itemPricemultiplier = 1.4f;
+                this.itemPricemultiplier = 1.2f;
             }else if (id == 1)
             {
                 this.itemName = "Laser Canon";
                 this.itemDescription = "Empowers the basic wepon with a more powerfull attack";
-                this.itemPricemultiplier = 1.4f;
+                this.itemPricemultiplier = 1.5f;
             }
             else if (id == 2)
             {
                 this.itemName = "Power3";
                 this.itemDescription = "Power 3 Description";
-                this.itemPricemultiplier = 1.1f;
+                this.itemPricemultiplier = 1.7f;
             }
             else if (id == 3)
             {
@@ -91,7 +91,7 @@ public class Item{
             {
                 this.itemName = "Power 4";
                 this.itemDescription = "Power 4 Description";
-                this.itemPricemultiplier = 1.4f;
+                this.itemPricemultiplier = 2f;
             }
 
         }
