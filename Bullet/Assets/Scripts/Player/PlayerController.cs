@@ -55,6 +55,7 @@ namespace Bullet.Player
         void Awake()
         {
             Instance = this;
+            score = (int)Bullet.PlayerMaster.Instance.Money;
         }
 
         private void OnTriggerEnter2D(Collider2D col)

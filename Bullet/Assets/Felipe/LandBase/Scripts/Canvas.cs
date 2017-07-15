@@ -16,22 +16,31 @@ public class Canvas : MonoBehaviour {
     public float ConfirmedPlayerMoneyCanvas;
     public float NotConfirmedPlayerMoneyCanvas;
 
-    public GameObject player;
-    private PlayerItems PlayerItemsScript; 
+    //public GameObject player;
+    //private PlayerItems player;
+    private Bullet.PlayerMaster player;
+
 
     public bool timeToGlowFrame;
     public GameObject FrameGlowOn;
     public GameObject FrameGlowOff;
     // Use this for initialization
+    private void Awake()
+    {
+        player = Bullet.PlayerMaster.Instance;
+        Debug.Log(player);
+    }
+
     public void Start() {
-        PlayerItemsScript = player.GetComponent<PlayerItems>();
-        ConfirmedPlayerMoneyCanvas = PlayerItemsScript.playerMoneyNumber;
+        
+        //PlayerItemsScript = player.GetComponent<PlayerMaster>();
+        ConfirmedPlayerMoneyCanvas = player.Money;
         NotConfirmedPlayerMoneyCanvas = ConfirmedPlayerMoneyCanvas;
 
         for (int i = 0; i < Item.TotalNumberOfItems; i++)
         {
             ShopItem[i].SetActive(true);
-            itemsOnShop[i] = PlayerItemsScript.itemsUnlocked[i];
+            itemsOnShop[i] = player.itemsUnlocked[i];
             ShopItem[i].GetComponent<PowerUp>().ThisItemID= itemsOnShop[i].GetID();
         }
         for (int i = 0; i < Item.TotalNumberOfItems; i++)
@@ -86,7 +95,7 @@ public class Canvas : MonoBehaviour {
     public void CloseCanvasFunction()
     {
         NotConfirmedPlayerMoneyCanvas = ConfirmedPlayerMoneyCanvas;
-        player.GetComponent<PlayerItems>().playerMoneyNumber = ConfirmedPlayerMoneyCanvas;
+        player.Money = ConfirmedPlayerMoneyCanvas;
         CloseCanvas = true;
     }
 /*

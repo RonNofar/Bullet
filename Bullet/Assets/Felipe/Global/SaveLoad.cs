@@ -28,9 +28,9 @@ public class SaveLoad : MonoBehaviour
         
         for (int i = 0; i < Item.TotalNumberOfItems; i++)
         {
-            savedItems[i] = Player.GetComponent<PlayerItems>().itemsUnlocked[i];
+            savedItems[i] = Bullet.PlayerMaster.Instance.itemsUnlocked[i];
         }
-        savedMoney = Player.GetComponent<PlayerItems>().playerMoneyNumber;
+        savedMoney = Bullet.PlayerMaster.Instance.Money;
 
         }
         else if (SceneManager.GetActiveScene().name == "_main")
