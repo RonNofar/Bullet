@@ -226,7 +226,9 @@ public class MenuController : MonoBehaviour
         {
             Bullet.PlayerMaster.Instance.itemsUnlocked[i] = new Item(i);
         }
+        Bullet.PlayerMaster.Instance.MaxLifes = 10;
         Bullet.PlayerMaster.Instance.Money=100000;
+        Bullet.PlayerMaster.Instance.Lifes = 6;
         SceneManager.LoadScene("Land_Control");
     }
 

@@ -34,9 +34,9 @@ namespace Bullet
             {
                 Reload();
             }
-            if(Input.GetKey(KeyCode.Alpha1))
+            if(Input.GetKey(KeyCode.Alpha4))
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
 
             if (Input.GetKey(KeyCode.Alpha1))

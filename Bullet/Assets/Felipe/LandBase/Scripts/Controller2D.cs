@@ -13,6 +13,7 @@ public class Controller2D : RaycastController
 
     public override void Start()
     {
+        Cursor.visible = false;
         base.Start();
         collisions.faceDir = 1;
 

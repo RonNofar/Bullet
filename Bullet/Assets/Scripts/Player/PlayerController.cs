@@ -57,6 +57,12 @@ namespace Bullet.Player
             Instance = this;
             score = (int)Bullet.PlayerMaster.Instance.Money;
         }
+        //kill me ...(Update) and OnDestroy
+        void OnDestroy()
+        {
+            Bullet.PlayerMaster.Instance.Money = score;
+            GameObject.Find("GameOver").SetActive(true);
+        }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -64,6 +70,7 @@ namespace Bullet.Player
             {
                 PlayExplosion();
                 score -= Random.Range(100, 500);
+                GameObject.Find("PlayerUI").GetComponent<PlayerUI>().hit=true;
             }
         }
 
