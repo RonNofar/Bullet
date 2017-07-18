@@ -28,7 +28,6 @@ public class Canvas : MonoBehaviour {
     private void Awake()
     {
         player = Bullet.PlayerMaster.Instance;
-        Debug.Log(player);
     }
 
     public void Start() {
@@ -42,10 +41,6 @@ public class Canvas : MonoBehaviour {
             ShopItem[i].SetActive(true);
             itemsOnShop[i] = player.itemsUnlocked[i];
             ShopItem[i].GetComponent<PowerUp>().ThisItemID= itemsOnShop[i].GetID();
-        }
-        for (int i = 0; i < Item.TotalNumberOfItems; i++)
-        {
-            itemsOnShop[i].printVar();
         }
 
         CloseCanvas = false;

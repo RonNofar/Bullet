@@ -28,6 +28,7 @@ namespace Bullet
 
         void Start()
         {
+            /*
             Money = 10000;
 
             itemsUnlocked[0] = new Item(0, true, 7);
@@ -36,7 +37,8 @@ namespace Bullet
             itemsUnlocked[2] = new Item(2, true, 5);
             itemsUnlocked[3] = new Item(3, true, 4);
             itemsUnlocked[4] = new Item(4, true, 10);
+            */
         }
     }
-
 }
+

@@ -20,7 +20,7 @@ public class SaveLoad : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
+        //Debug.Log(SceneManager.GetActiveScene().name);
 
         if (SceneManager.GetActiveScene().name == "Land_Control")
         {

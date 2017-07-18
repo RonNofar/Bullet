@@ -48,7 +48,7 @@ public class PowerUp : MonoBehaviour {
             }
         }
             PowerUpTextPrice.text = PowerUpPriceNumber.ToString();
-        for (int x = 0; x <= 10; x++)
+        for (int x = 0; x < 10; x++)
         {
             if (x <= (CurrentPowerLevel - 1))
             {

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class TextController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     //------------------------------------Storry Part
     public Text text;
@@ -15,7 +15,7 @@ public class TextController : MonoBehaviour
     private States myState;
     //-------------------------------------
     //-------------------------------Main_Menu
-    public GameObject ButtonStart;
+    public GameObject ButtonNewGame;
     public GameObject ButtonOptions;
     public GameObject ButtonExit;
     public GameObject ButtonsMenuBackground;
@@ -33,7 +33,7 @@ public class TextController : MonoBehaviour
         //-----Main_Menu
         ButtonsMenuBackground.SetActive(false);
         KardashevImage.SetActive(false);
-        ButtonStart.SetActive(false);
+        ButtonNewGame.SetActive(false);
         ButtonOptions.SetActive(false);
         ButtonExit.SetActive(false);
         //----------------
@@ -42,19 +42,19 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
 
     //button press-----------------------
-    public void ButtonChangeState()
+    public void ButtonNextF()
     {
         ButtonPress = true;
-        Invoke("ButtonChangeTime", 0.2f);
+        Invoke("NextStorryTextTime", 0.2f);
     }
-    public void ButtonChangeTime()
+
+    public void NextStorryTextTime()
     {
         ButtonPress = false;
     }
     //-----------------------------------
 
     void Update(){
-        print(myState);
         if (myState==States.initial_0) {
             state_initial_0();
         }
@@ -207,19 +207,27 @@ public class TextController : MonoBehaviour
         text.text = "";
         ButtonsMenuBackground.SetActive(true);
         KardashevImage.SetActive(true);
-        ButtonStart.SetActive(true);
+        ButtonNewGame.SetActive(true);
         ButtonOptions.SetActive(true);
         ButtonExit.SetActive(true);
     }
 
-    public void Exit() {
+    public void ButtonExitF() {
         Application.Quit();
     }
-    public void Button_Start()
+    public void ButtonStartF()
     {
         SceneManager.LoadScene("Land_Control");
 
     }
-
+    public void ButtonNewGameF()
+    {
+        for (int i = 0; i < Item.TotalNumberOfItems; i++)
+        {
+            Bullet.PlayerMaster.Instance.itemsUnlocked[i] = new Item(i);
+        }
+        Bullet.PlayerMaster.Instance.Money=100000;
+        SceneManager.LoadScene("Land_Control");
+    }
 
 }
