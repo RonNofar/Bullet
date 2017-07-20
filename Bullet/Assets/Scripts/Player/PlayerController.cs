@@ -61,7 +61,6 @@ namespace Bullet.Player
         void OnDestroy()
         {
             Bullet.PlayerMaster.Instance.Money = score;
-            GameObject.Find("GameOver").SetActive(true);
         }
 
         private void OnTriggerEnter2D(Collider2D col)
