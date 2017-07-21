@@ -10,15 +10,19 @@ namespace Bullet.Enemy
         [SerializeField]
         private GameObject EnemyBulletPrefab;
 
-        public float delay = 1f;
+        public float delay = 1f; // Delay for first shot
 
-        public int repeats = 0;
-        public float repeatDelay = 1f;
+        public int repeats = 0; // Extra bullets being fired
+        public float repeatDelay = 1f; // Time between extra bullet firing
+
+        public int rounds = 0; // Amount of extra rounds to fire (a round will go through repeates again)
+        public float roundDelay = 1f; // Amount of time between rounds
 
         // Use this for initialization
         void Start()
         {
-            StartCoroutine(Util.Func.WaitAndRunAction(delay, () => { FireEnemyBullet(repeats, repeatDelay); }));
+            roundDelay += repeats * repeatDelay;
+            StartCoroutine(Util.Func.WaitAndRunAction(delay, () => { FireRound(rounds, roundDelay); }));//FireEnemyBullet(repeats, repeatDelay); }));
             //Invoke("FireEnemyBullet", 1f);
         }
 
@@ -26,6 +30,15 @@ namespace Bullet.Enemy
         void Update()
         {
 
+        }
+
+        void FireRound(int rounds = 0, float roundDelay = 0f, int i = 0)
+        {
+            FireEnemyBullet(repeats, repeatDelay);
+            if (i < rounds)
+            {
+                StartCoroutine(Util.Func.WaitAndRunAction(roundDelay, () => { FireRound(rounds, roundDelay, ++i); }));
+            }
         }
 
         void FireEnemyBullet(int repeats = 0, float repeatDelay = 0, int i = 0)
