@@ -10,24 +10,6 @@ public class SpriteAttachments : MonoBehaviour
 
     public Dictionary<string, Transform> attachments = new Dictionary<string, Transform>();
    
-    private void Awake()
-    {
-        SpriteAttachment[] found = GetComponentsInChildren<SpriteAttachment>();
-
-        if (found.Count() < GetAttachments(spriteRenderer.sprite.name).Count())
-        {
-            Debug.Log("[SpriteAttachments] No or too few attachments present, recreating them");
-            CreateAttachments();
-        }
-        else
-        {
-            found = GetComponentsInChildren<SpriteAttachment>();
-            foreach (SpriteAttachment att in found)
-            {
-                attachments.Add(att.gameObject.name, att.transform);
-            }
-        }
-    }
 
     public void CreateAttachments()
     {

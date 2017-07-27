@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
-
+    public bool ReadyToLeave;
+    public bool lostPlayer;
+    public bool lostPlayer2;
     public bool stepingOnShop;
     public GameObject ShopCanvas;
     public GameObject PlayerObj;
@@ -32,10 +34,25 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     float velocityXSmoothing;
 
+    bool Helptimer;
+    public bool notMoving = false;
+    int numberOfTimesKeyPress;
+    int timeyield;
+
     Controller2D controller;
 
     void Start()
     {
+        notMoving = false;
+        //you can cancel invokerepeating using CancelInvoke(), but if you have many of them in one script, it will stop all of them
+        InvokeRepeating("AddValue", 1, 1);
+        timeyield = 0;
+        numberOfTimesKeyPress = 0;
+        Helptimer = false;
+
+        lostPlayer2 = false;
+        lostPlayer = false;
+
         controller = GetComponent<Controller2D>();
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -47,7 +64,39 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        stepingOnShop = ShopCanvas;
+        if (timeyield >= 10)
+        {
+            Helptimer = true;
+        }
+        if (Helptimer) {
+            Helptimer = false;
+            CancelInvoke();
+            //Debug.Log("now we will see if you need help /" + timeyield + " : " + numberOfTimesKeyPress);
+            if (numberOfTimesKeyPress == 0)
+            {
+                //Invoke Help UI
+               // print("user wasd arrow keys");
+                notMoving = true;
+                numberOfTimesKeyPress = 0;
+                timeyield = 0;
+            }
+            else
+            {
+                numberOfTimesKeyPress = 0;
+                timeyield = 0;
+               // print("Time : " + timeyield + " numberOfKeyP: " + numberOfTimesKeyPress);
+                InvokeRepeating("AddValue", 1, 1);
+
+            }
+                
+
+        }
+        if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            numberOfTimesKeyPress++;
+            notMoving = false;
+        }
+
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         int wallDirX = (controller.collisions.left) ? -1 : 1;
 
@@ -55,7 +104,7 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
         bool wallSliding = false;
-        if ((controller.collisions.left || controller.collisions.right) && !controller.collisions.below && velocity.y < 0)
+            if ((controller.collisions.left || controller.collisions.right) && !controller.collisions.below && velocity.y < 0)
         {
             wallSliding = true;
 
@@ -134,8 +183,10 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (controller.collisions.Onshop)
+        if (controller.collisions.Onshop)
         {
+            stepingOnShop = true;
+
             if (Input.GetKeyUp(KeyCode.Return))
             {
                 if (!ShopCanvas.activeInHierarchy)
@@ -148,19 +199,38 @@ public class Player : MonoBehaviour
                 {
                     //Ask for script to hide it self
                     ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
-             
+
                     //ShopCanvas.SetActive(false);
                     // Cursor.visible = false;
 
                 }
             }
-        }
+        } 
         else if (ShopCanvas.activeInHierarchy) {
             //Ask for script to hide it self
             ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
             //ShopCanvas.SetActive(false);
             //Cursor.visible = false;
         }
+        else
+            stepingOnShop = false;
 
+        if (controller.collisions.NeedHelp)
+        {
+            lostPlayer = true;
+        }
+        else
+            lostPlayer = false;
+        if (controller.collisions.ReadyToLeave)
+        {
+            ReadyToLeave = true;
+        }
+        else
+    
+            ReadyToLeave = false;
+    }
+    void AddValue()
+    {
+        timeyield++;
     }
 }

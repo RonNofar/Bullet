@@ -23,31 +23,31 @@ public class Item{
             if (id == 0)
             {
                 this.itemName = "Energy Cristal";
-                this.itemDescription = "Empowers the basic wepon with a more powerfull attack";
+                this.itemDescription = "Mineral that increases your ship Base Speed";
                 this.itemPricemultiplier = 1.2f;
             }
             else if (id == 1)
             {
                 this.itemName = "Laser Canon";
-                this.itemDescription = "Empowers the basic wepon with a more powerfull attack";
+                this.itemDescription = "Upgrade your canons with increased Damage";
                 this.itemPricemultiplier = 1.5f;
             }
             else if (id == 2)
             {
-                this.itemName = "Power3";
-                this.itemDescription = "Power 3 Description";
+                this.itemName = "Cooling sistem";
+                this.itemDescription = "increase the Bullet Speed and fire rate";
                 this.itemPricemultiplier = 1.7f;
             }
             else if (id == 3)
             {
-                this.itemName = "Power 4";
-                this.itemDescription = "Power 4 Description";
+                this.itemName = "Hull";
+                this.itemDescription = "Increase the ship total hit points";
                 this.itemPricemultiplier = 1.4f;
             }
             else if (id == 4)
             {
-                this.itemName = "Power 5";
-                this.itemDescription = "Power 5 Description";
+                this.itemName = "Warp Capacity";
+                this.itemDescription = "Increse max time on warp mode";
                 this.itemPricemultiplier = 2f;
             }
         }
