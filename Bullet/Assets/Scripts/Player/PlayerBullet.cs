@@ -12,7 +12,7 @@ namespace Bullet.Player
         // Use this for initialization
         void Start()
         {
-            speed = 8f;
+            speed = 16f;
             transform = GetComponent<Transform>();
         }
 

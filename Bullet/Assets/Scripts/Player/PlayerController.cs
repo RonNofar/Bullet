@@ -13,9 +13,33 @@ namespace Bullet.Player
             set { _instance = value; }
         }
 
-        [Header("Movement")]
+        [Header("Player Stats (Pre-Load)")]
         [SerializeField]
-        private float speed = 0.1f;
+        private float baseSpeed = 5f;
+        [SerializeField]
+        private float baseBulletDamage;
+        [SerializeField]
+        private float baseBulletProjectileSpeed;
+        [SerializeField]
+        private float baseBulletFireRate;
+        [SerializeField]
+        private float baseHealth;
+        [SerializeField]
+        private float baseStamina;
+
+        [Header("Player Stats (Post-Load)")]
+        [SerializeField]
+        private float speed;
+        [SerializeField]
+        private float bulletDamage;
+        [SerializeField]
+        private float bulletProjectileSpeed;
+        [SerializeField]
+        private float bulletFireRate;
+        [SerializeField]
+        private float health;
+        [SerializeField]
+        private float stamina;
 
         [Header("Bullet")]
         public int bulletLevel = 1;
@@ -33,6 +57,13 @@ namespace Bullet.Player
         private float bulletLife = 2f;
 
         private float shotTime = 0f;
+
+        [Header("Stamina")]
+        [SerializeField]
+        private float staminaScaler = 2f;
+        private float staminaRatio = 1f;
+        [HideInInspector]
+        public bool isStamina = false;
 
         [Header("Explosion")]
         [SerializeField]
@@ -56,6 +87,7 @@ namespace Bullet.Player
         {
             Instance = this;
             score = (int)Bullet.PlayerMaster.Instance.Money;
+            LoadItems(PlayerMaster.Instance.itemsUnlocked);
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -86,7 +118,7 @@ namespace Bullet.Player
 
             Vector2 pos = transform.position;
 
-            pos += direction * speed * Time.deltaTime;
+            pos += direction * (isStamina ? speed * staminaScaler : speed) * Time.deltaTime;
 
             pos.x = Mathf.Clamp(pos.x, min.x, max.x);
             pos.y = Mathf.Clamp(pos.y, min.y, max.y);
@@ -145,6 +177,32 @@ namespace Bullet.Player
             }
             Debug.Log("ERROR: invalid level.");
             return null;
+        }
+
+        private void LoadItems(Item[] arr)
+        {
+            for (int i = 0; i < arr.Length; ++i)
+            {
+                switch(i)
+                {
+                    case 0: // Base Speed
+                        speed = baseSpeed + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        break;
+                    case 1: // Bullet Damage
+                        bulletDamage = baseBulletDamage + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        break;
+                    case 2: // Bullet Speed
+                        bulletProjectileSpeed = baseBulletProjectileSpeed + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        bulletFireRate        = baseBulletFireRate + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        break;
+                    case 3: // Health
+                        health = baseHealth + (arr[i].GetID() * 0.1f);
+                        break;
+                    case 4: // Stamina
+                        stamina = baseStamina + (arr[i].GetID() * 0.1f);
+                        break;
+                }
+            }
         }
     }
 }

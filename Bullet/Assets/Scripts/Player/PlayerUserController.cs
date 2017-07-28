@@ -36,6 +36,17 @@ namespace Bullet.Player
 
                 player.KeyMove(direction);
             }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Debug.Log("down");
+                player.isStamina = true;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                Debug.Log("up");
+                player.isStamina = false;
+            }
         }
     }
 }
