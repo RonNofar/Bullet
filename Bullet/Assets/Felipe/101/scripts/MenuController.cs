@@ -20,12 +20,20 @@ public class MenuController : MonoBehaviour
     public GameObject ButtonExit;
     public GameObject ButtonsMenuBackground;
 
+    //-----------------------------------
+    public bool audioFadeTime;
+    public bool kardashevMenuMusicTime;
+
 
 
 
     // Use this for initialization
     void Start()
-    {   //------Storry
+    {
+        //------Audio
+        kardashevMenuMusicTime = false;
+        audioFadeTime = false;
+        //------Storry
         ButtonNext.SetActive(true);
         ImageStorry.SetActive(true);
         myState = States.initial_0;
@@ -152,6 +160,7 @@ public class MenuController : MonoBehaviour
     {
         text.alignment = TextAnchor.MiddleCenter;
         text.text = "It is time for humanity to grow";
+        audioFadeTime = true;
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
@@ -204,6 +213,7 @@ public class MenuController : MonoBehaviour
     {
         text.alignment = TextAnchor.MiddleCenter;
         //MENU
+        kardashevMenuMusicTime = true;
         text.text = "";
         ButtonsMenuBackground.SetActive(true);
         KardashevImage.SetActive(true);

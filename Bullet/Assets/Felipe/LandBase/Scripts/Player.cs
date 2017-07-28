@@ -35,21 +35,19 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
 
     bool Helptimer;
-    public bool notMoving = false;
-    int numberOfTimesKeyPress;
-    int timeyield;
+    public bool notMoving ;
+    public bool notJumping;
+    int numberOfTimesMovePress;
+    int numberOfTimesJumpPress;
+    int numberOfYielTimes;
+    public int timeyield;
+    public int SetHelpTime;
+
 
     Controller2D controller;
 
     void Start()
     {
-        notMoving = false;
-        //you can cancel invokerepeating using CancelInvoke(), but if you have many of them in one script, it will stop all of them
-        InvokeRepeating("AddValue", 1, 1);
-        timeyield = 0;
-        numberOfTimesKeyPress = 0;
-        Helptimer = false;
-
         lostPlayer2 = false;
         lostPlayer = false;
 
@@ -64,38 +62,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (timeyield >= 10)
-        {
-            Helptimer = true;
-        }
-        if (Helptimer) {
-            Helptimer = false;
-            CancelInvoke();
-            //Debug.Log("now we will see if you need help /" + timeyield + " : " + numberOfTimesKeyPress);
-            if (numberOfTimesKeyPress == 0)
-            {
-                //Invoke Help UI
-               // print("user wasd arrow keys");
-                notMoving = true;
-                numberOfTimesKeyPress = 0;
-                timeyield = 0;
-            }
-            else
-            {
-                numberOfTimesKeyPress = 0;
-                timeyield = 0;
-               // print("Time : " + timeyield + " numberOfKeyP: " + numberOfTimesKeyPress);
-                InvokeRepeating("AddValue", 1, 1);
-
-            }
-                
-
-        }
-        if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
-            numberOfTimesKeyPress++;
-            notMoving = false;
-        }
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         int wallDirX = (controller.collisions.left) ? -1 : 1;
@@ -229,8 +195,5 @@ public class Player : MonoBehaviour
     
             ReadyToLeave = false;
     }
-    void AddValue()
-    {
-        timeyield++;
-    }
+
 }
