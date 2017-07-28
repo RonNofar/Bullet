@@ -30,7 +30,7 @@ namespace Bullet.Items
         {
             if (collision.transform.tag == "Enemy")
             {
-                Player.PlayerController._instance.score += Random.Range(50, 250);
+                Player.PlayerController.Instance.score += Random.Range(50, 250);
                 Destroy(gameObject);
             }
         }

@@ -6,12 +6,19 @@ namespace Bullet.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public static PlayerController _instance;
+        #region Variables
+        #region Singleton
+        protected static PlayerController _instance;
         [HideInInspector]
-        public PlayerController Instance {
+        static public PlayerController Instance {
             get { return _instance; }
             set { _instance = value; }
         }
+        #endregion
+
+        #region Gameplay
+        [Tooltip("DO NOT TOUCH")]
+        public float health;
 
         [Header("Player Stats (Pre-Load)")]
         [SerializeField]
@@ -19,13 +26,13 @@ namespace Bullet.Player
         [SerializeField]
         private float baseBulletDamage;
         [SerializeField]
-        private float baseBulletProjectileSpeed;
+        private float baseBulletProjectileSpeed = 8f;
         [SerializeField]
-        private float baseBulletFireRate;
+        private float baseBulletFireRate = 0.1f;
         [SerializeField]
-        private float baseHealth;
+        private float baseHealth = 100f;
         [SerializeField]
-        private float baseStamina;
+        private float baseStamina = 100f;
 
         [Header("Player Stats (Post-Load)")]
         [SerializeField]
@@ -37,10 +44,12 @@ namespace Bullet.Player
         [SerializeField]
         private float bulletFireRate;
         [SerializeField]
-        private float health;
+        private float maxHealth;
         [SerializeField]
-        private float stamina;
+        private float maxStamina;
+        #endregion
 
+        #region  Maintenance
         [Header("Bullet")]
         public int bulletLevel = 1;
         [SerializeField]
@@ -49,19 +58,16 @@ namespace Bullet.Player
         private GameObject[] bulletPositionL2;
         [SerializeField]
         private GameObject bulletPrefab;
-        [SerializeField]
-        private float shotDelay = 0.1f;
-        [SerializeField]
-        private float bulletForce = 1f;
-        [SerializeField]
-        private float bulletLife = 2f;
 
         private float shotTime = 0f;
 
         [Header("Stamina")]
         [SerializeField]
         private float staminaScaler = 2f;
-        private float staminaRatio = 1f;
+        [SerializeField]
+        private float depleteRate = 1f;
+        private float stamina;
+        
         [HideInInspector]
         public bool isStamina = false;
 
@@ -82,29 +88,45 @@ namespace Bullet.Player
                 if (_score > 9999) _score = 9999;
             }
         }
+        #endregion
+        #endregion
 
+        #region Functions
+        #region Unity
         void Awake()
         {
-            Instance = this;
-            score = (int)Bullet.PlayerMaster.Instance.Money;
-            LoadItems(PlayerMaster.Instance.itemsUnlocked);
+            _instance = this;
+
+            try
+            {
+                score = (int)Bullet.PlayerMaster.Instance.Money;
+                LoadItems(PlayerMaster.Instance.itemsUnlocked);
+            }
+            catch
+            {
+                Debug.Log("ERROR: No PlayerMaster found.");
+            }
+
+            stamina = maxStamina;
+            health = maxHealth;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if((col.tag == "EnemyShip") || (col.tag == "EnemyBullet"))
+            if(col.tag == "EnemyShip")
             {
                 PlayExplosion();
+                Damage(col.gameObject.GetComponent<Enemy.EnemyControl>().damage); // change this
                 score -= Random.Range(100, 500);
             }
+            else if (col.tag == "EnemyBullet")
+            {
+                Damage(col.gameObject.GetComponent<Enemy.EnemyBullet>().damage);
+            }
         }
+        #endregion
 
-        void PlayExplosion()
-        {
-            GameObject explosion = Instantiate(explosionPrefab);
-            explosion.transform.position = transform.position;
-        }
-
+        #region Movement
         public void KeyMove(Vector2 direction)
         {
             Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
@@ -118,7 +140,21 @@ namespace Bullet.Player
 
             Vector2 pos = transform.position;
 
-            pos += direction * (isStamina ? speed * staminaScaler : speed) * Time.deltaTime;
+            float temp_speed = speed;
+            if (isStamina && stamina != 0f)
+            {
+                temp_speed = speed * staminaScaler;
+
+                stamina -= depleteRate;
+                if (stamina < 0) stamina = 0;
+            }
+            else if (!isStamina && stamina < maxStamina)
+            {
+                stamina += depleteRate;
+                if (stamina > maxStamina) stamina = maxStamina;
+            }
+
+            pos += direction * temp_speed * Time.deltaTime;
 
             pos.x = Mathf.Clamp(pos.x, min.x, max.x);
             pos.y = Mathf.Clamp(pos.y, min.y, max.y);
@@ -139,30 +175,59 @@ namespace Bullet.Player
                 }
             }
         }
+        #endregion
 
+        #region Gameplay
         public void Shoot()
         {
             if (shotTime < Time.time)
             { // Object Pool??
-                shotTime = Time.time + shotDelay;
+                shotTime = Time.time + bulletFireRate;
 
                 if (bulletLevel == 1)
                 {
-                    GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                    bullet.transform.position = bulletPositionL1[0].transform.position;
+                    SpawnBullet(new Vector3[] { bulletPositionL1[0].transform.position });
                 }
                 else if (bulletLevel ==2)
                 {
-                    GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                    bullet1.transform.position = bulletPositionL2[0].transform.position;
-                    GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                    bullet2.transform.position = bulletPositionL2[1].transform.position;
+                    SpawnBullet(new Vector3[] {
+                        bulletPositionL2[0].transform.position,
+                        bulletPositionL2[1].transform.position });
                 }
-                //bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bulletForce);
             }
 
         }
 
+        private void SpawnBullet(Vector3[] positions)
+        {
+            for (int i = 0; i < positions.Length; ++i)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                bullet.transform.position = positions[i];
+                bullet.GetComponent<PlayerBullet>().speed = bulletProjectileSpeed;
+            }
+        }
+
+        public void Damage(float amount)
+        {
+            health -= amount;
+            if (health < 0)
+            {
+                health = 0;
+                //Death();
+            }
+        }
+        #endregion
+
+        #region Animation / FX
+        void PlayExplosion()
+        {
+            GameObject explosion = Instantiate(explosionPrefab);
+            explosion.transform.position = transform.position;
+        }
+        #endregion
+
+        #region Utility
         public GameObject[] GetBulletPositionFromLevel(int level)
         {
             switch (level)
@@ -186,23 +251,42 @@ namespace Bullet.Player
                 switch(i)
                 {
                     case 0: // Base Speed
-                        speed = baseSpeed + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        speed = baseSpeed + (arr[i].GetLevel() * 0.1f); // FOR 0.1f put algorithm later
                         break;
                     case 1: // Bullet Damage
-                        bulletDamage = baseBulletDamage + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        bulletDamage = baseBulletDamage + (arr[i].GetLevel() * 0.1f); // FOR 0.1f put algorithm later
                         break;
                     case 2: // Bullet Speed
-                        bulletProjectileSpeed = baseBulletProjectileSpeed + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
-                        bulletFireRate        = baseBulletFireRate + (arr[i].GetID() * 0.1f); // FOR 0.1f put algorithm later
+                        bulletProjectileSpeed = baseBulletProjectileSpeed + (arr[i].GetLevel() * 0.1f); // FOR 0.1f put algorithm later
+                        bulletFireRate        = baseBulletFireRate - (arr[i].GetLevel() * 0.01f); // FOR 0.1f put algorithm later
                         break;
                     case 3: // Health
-                        health = baseHealth + (arr[i].GetID() * 0.1f);
+                        maxHealth = baseHealth + (arr[i].GetLevel() * 10f);
                         break;
                     case 4: // Stamina
-                        stamina = baseStamina + (arr[i].GetID() * 0.1f);
+                        maxStamina = baseStamina + (arr[i].GetLevel() * 10f);
                         break;
                 }
             }
         }
+
+        public float GetDamageAmount()
+        {
+            return bulletDamage; 
+        }
+
+        public float GetHealthRatio()
+        {
+            try { return health / maxHealth; }
+            catch { return 0f; }
+        }
+
+        public float GetStaminaRatio()
+        {
+            try { return stamina / maxStamina; }
+            catch { return 0f; }
+        }
+        #endregion
+        #endregion
     }
 }

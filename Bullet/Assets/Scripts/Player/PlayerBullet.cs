@@ -6,13 +6,15 @@ namespace Bullet.Player
 {
     public class PlayerBullet : MonoBehaviour
     {
-        float speed;
+        
         new Transform transform;
+
+        public float speed = 8f;
 
         // Use this for initialization
         void Start()
         {
-            speed = 16f;
+            //speed = 16f;
             transform = GetComponent<Transform>();
         }
 
@@ -38,7 +40,7 @@ namespace Bullet.Player
             if (col.tag == "EnemyShip")
             {
                 Destroy(gameObject);
-                Player.PlayerController._instance.score += Random.Range(100, 500);
+                Player.PlayerController.Instance.score += Random.Range(100, 500);
             }
         }
     }

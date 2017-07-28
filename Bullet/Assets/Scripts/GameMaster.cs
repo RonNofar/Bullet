@@ -40,9 +40,9 @@ namespace Bullet
             }
 
             if (Input.GetKey(KeyCode.Alpha1))
-                Player.PlayerController._instance.bulletLevel = 1;
+                Player.PlayerController.Instance.bulletLevel = 1;
             if (Input.GetKey(KeyCode.Alpha2))
-                Player.PlayerController._instance.bulletLevel = 2;
+                Player.PlayerController.Instance.bulletLevel = 2;
         }
 
         public void Reload()
