@@ -24,6 +24,8 @@ namespace Bullet.Player
         [SerializeField]
         private float baseSpeed = 5f;
         [SerializeField]
+        private float maxSpeed = 10f;
+        [SerializeField]
         private float baseBulletDamage;
         [SerializeField]
         private float baseBulletProjectileSpeed = 8f;
@@ -251,14 +253,14 @@ namespace Bullet.Player
                 switch(i)
                 {
                     case 0: // Base Speed
-                        speed = baseSpeed + (arr[i].GetLevel() * 0.1f); // FOR 0.1f put algorithm later
+                        speed = baseSpeed + (arr[i].GetLevel() * (maxSpeed - baseSpeed) / 10); // FOR 0.1f put algorithm later
                         break;
                     case 1: // Bullet Damage
-                        bulletDamage = baseBulletDamage + (arr[i].GetLevel() * 0.1f); // FOR 0.1f put algorithm later
+                        bulletDamage = baseBulletDamage + (arr[i].GetLevel() * 10f); // FOR 0.1f put algorithm later
                         break;
                     case 2: // Bullet Speed
-                        bulletProjectileSpeed = baseBulletProjectileSpeed + (arr[i].GetLevel() * 0.1f); // FOR 0.1f put algorithm later
-                        bulletFireRate        = baseBulletFireRate - (arr[i].GetLevel() * 0.01f); // FOR 0.1f put algorithm later
+                        bulletProjectileSpeed = baseBulletProjectileSpeed + (arr[i].GetLevel() * 1f); // FOR 0.1f put algorithm later
+                        bulletFireRate        = baseBulletFireRate - (arr[i].GetLevel() * 2f); // FOR 0.1f put algorithm later
                         break;
                     case 3: // Health
                         maxHealth = baseHealth + (arr[i].GetLevel() * 10f);
