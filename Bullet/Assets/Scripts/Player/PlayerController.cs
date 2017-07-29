@@ -26,15 +26,25 @@ namespace Bullet.Player
         [SerializeField]
         private float maxSpeed = 10f;
         [SerializeField]
-        private float baseBulletDamage;
+        private float baseBulletDamage = 25f;
+        [SerializeField]
+        private float maxBulletDamage = 125f;
         [SerializeField]
         private float baseBulletProjectileSpeed = 8f;
         [SerializeField]
-        private float baseBulletFireRate = 0.1f;
+        private float maxBulletProjectileSpeed = 16f;
+        [SerializeField]
+        private float baseBulletFireRate = 0.2f;
+        [SerializeField]
+        private float minBulletFireRate = 0.1f;
         [SerializeField]
         private float baseHealth = 100f;
         [SerializeField]
+        private float maxHealth = 200f;
+        [SerializeField]
         private float baseStamina = 100f;
+        [SerializeField]
+        private float maxStamina = 200f;
 
         [Header("Player Stats (Post-Load)")]
         [SerializeField]
@@ -46,9 +56,9 @@ namespace Bullet.Player
         [SerializeField]
         private float bulletFireRate;
         [SerializeField]
-        private float maxHealth;
+        private float totalHealth;
         [SerializeField]
-        private float maxStamina;
+        private float totalStamina;
         #endregion
 
         #region  Maintenance
@@ -109,8 +119,8 @@ namespace Bullet.Player
                 Debug.Log("ERROR: No PlayerMaster found.");
             }
 
-            stamina = maxStamina;
-            health = maxHealth;
+            stamina = totalStamina;
+            health = totalHealth;
         }
         //kill me ...(Update) and OnDestroy
         void OnDestroy()
@@ -156,10 +166,10 @@ namespace Bullet.Player
                 stamina -= depleteRate;
                 if (stamina < 0) stamina = 0;
             }
-            else if (!isStamina && stamina < maxStamina)
+            else if (!isStamina && stamina < totalStamina)
             {
                 stamina += depleteRate;
-                if (stamina > maxStamina) stamina = maxStamina;
+                if (stamina > totalStamina) stamina = totalStamina;
             }
 
             pos += direction * temp_speed * Time.deltaTime;
@@ -194,24 +204,25 @@ namespace Bullet.Player
 
                 if (bulletLevel == 1)
                 {
-                    SpawnBullet(new Vector3[] { bulletPositionL1[0].transform.position });
+                    SpawnBullet(new Transform[] { bulletPositionL1[0].transform });
                 }
                 else if (bulletLevel ==2)
                 {
-                    SpawnBullet(new Vector3[] {
-                        bulletPositionL2[0].transform.position,
-                        bulletPositionL2[1].transform.position });
+                    SpawnBullet(new Transform[] {
+                        bulletPositionL2[0].transform,
+                        bulletPositionL2[1].transform });
                 }
             }
 
         }
 
-        private void SpawnBullet(Vector3[] positions)
+        private void SpawnBullet(Transform[] trans)
         {
-            for (int i = 0; i < positions.Length; ++i)
+            for (int i = 0; i < trans.Length; ++i)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet.transform.position = positions[i];
+                bullet.transform.position = trans[i].position;
+                bullet.transform.rotation = trans[i].rotation;
                 bullet.GetComponent<PlayerBullet>().speed = bulletProjectileSpeed;
             }
         }
@@ -262,17 +273,19 @@ namespace Bullet.Player
                         speed = baseSpeed + (arr[i].GetLevel() * (maxSpeed - baseSpeed) / 10); // FOR 0.1f put algorithm later
                         break;
                     case 1: // Bullet Damage
-                        bulletDamage = baseBulletDamage + (arr[i].GetLevel() * 10f); // FOR 0.1f put algorithm later
+                        bulletDamage = baseBulletDamage + (arr[i].GetLevel() * (maxBulletDamage - baseBulletDamage) / 10); // FOR 0.1f put algorithm later
                         break;
                     case 2: // Bullet Speed
-                        bulletProjectileSpeed = baseBulletProjectileSpeed + (arr[i].GetLevel() * 1f); // FOR 0.1f put algorithm later
-                        bulletFireRate        = baseBulletFireRate - (arr[i].GetLevel() * 2f); // FOR 0.1f put algorithm later
+                        bulletProjectileSpeed = baseBulletProjectileSpeed + 
+                            (arr[i].GetLevel() * (maxBulletProjectileSpeed - baseBulletProjectileSpeed) / 10); // FOR 0.1f put algorithm later
+                        bulletFireRate        = baseBulletFireRate - 
+                            (arr[i].GetLevel() * (baseBulletFireRate - minBulletFireRate) / 10); // FOR 0.1f put algorithm later
                         break;
                     case 3: // Health
-                        maxHealth = baseHealth + (arr[i].GetLevel() * 10f);
+                        totalHealth = baseHealth + (arr[i].GetLevel() * (maxHealth - baseHealth) / 10);
                         break;
                     case 4: // Stamina
-                        maxStamina = baseStamina + (arr[i].GetLevel() * 10f);
+                        totalStamina = baseStamina + (arr[i].GetLevel() * (maxHealth- baseHealth) / 10);
                         break;
                 }
             }
@@ -285,13 +298,13 @@ namespace Bullet.Player
 
         public float GetHealthRatio()
         {
-            try { return health / maxHealth; }
+            try { return health / totalHealth; }
             catch { return 0f; }
         }
 
         public float GetStaminaRatio()
         {
-            try { return stamina / maxStamina; }
+            try { return stamina / totalStamina; }
             catch { return 0f; }
         }
         #endregion

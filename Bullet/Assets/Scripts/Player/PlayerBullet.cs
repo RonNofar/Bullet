@@ -21,11 +21,11 @@ namespace Bullet.Player
         // Update is called once per frame
         void Update()
         {
-            Vector2 position = transform.position;
+            Vector2 position = transform.localPosition;
 
             position = new Vector2(position.x, position.y + speed * Time.deltaTime);
 
-            transform.position = position;
+            transform.localPosition = position;
 
             Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
