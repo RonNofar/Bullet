@@ -13,6 +13,7 @@ public class Controller2D : RaycastController
 
     public override void Start()
     {
+        Cursor.visible = false;
         base.Start();
         collisions.faceDir = 1;
 
@@ -74,9 +75,11 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
+                //add tag colider here will only work for object sliding down wall
 
                 if (hit.distance == 0)
                 {
+
                     continue;
                 }
 
@@ -114,6 +117,7 @@ public class Controller2D : RaycastController
                 }
             }
         }
+
     }
 
     void VerticalCollisions(ref Vector3 velocity)
@@ -132,7 +136,7 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
-                if (hit.collider.tag == "Through")
+                    if (hit.collider.tag == "Through")
                 {
                     if (directionY == 1 || hit.distance == 0)
                     {
@@ -145,7 +149,7 @@ public class Controller2D : RaycastController
                     if (playerInput.y == -1)
                     {
                         collisions.fallingThroughPlatform = true;
-                        Invoke("ResetFallingThroughPlatform", .5f);
+                        Invoke("ResetFallingThroughPlatform", 0.3f);
                         continue;
                     }
                 }
@@ -164,11 +168,17 @@ public class Controller2D : RaycastController
                 if (hit.collider.tag == "Shop")
                 {
                     collisions.Onshop = true;
-                }
+                }else
+                collisions.Onshop = false;
                 if (hit.collider.tag == "GoToLevel")
                 {
                     collisions.ReadyToLeave = true;
                 }
+                if (hit.collider.tag == "Instructions")
+                {
+                    collisions.NeedHelp = true;
+                }else
+                    collisions.NeedHelp = false;
             }
         }
 
@@ -242,6 +252,8 @@ public class Controller2D : RaycastController
 
     public struct CollisionInfo
     {
+        public bool NeedHelp;
+
         public bool Onshop;
         public bool ReadyToLeave;
 
@@ -257,6 +269,7 @@ public class Controller2D : RaycastController
 
         public void Reset()
         {
+            NeedHelp = false;
             Onshop = false;
             ReadyToLeave = false;
 

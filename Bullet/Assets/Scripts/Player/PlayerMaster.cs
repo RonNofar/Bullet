@@ -9,6 +9,8 @@ namespace Bullet
     {
         public Item[] itemsUnlocked = new Item[5];
         public float Money;
+        public int Lifes;
+        public int MaxLifes ;
 
         static public PlayerMaster Instance { get { return _instance; } }
         static protected PlayerMaster _instance;

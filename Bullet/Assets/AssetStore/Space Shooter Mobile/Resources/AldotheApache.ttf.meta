@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6324aea655e1a3748a94cfecd51a009e
+timeCreated: 1486569776
+licenseType: Store
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 90
+  forceTextureCase: -1
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aldo the Apache
+  fontNames:
+  - Aldo the Apache
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 06152ce253d7d4bdca886975f2a59e50, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

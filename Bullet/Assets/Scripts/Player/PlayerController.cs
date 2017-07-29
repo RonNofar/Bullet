@@ -112,6 +112,11 @@ namespace Bullet.Player
             stamina = maxStamina;
             health = maxHealth;
         }
+        //kill me ...(Update) and OnDestroy
+        void OnDestroy()
+        {
+            Bullet.PlayerMaster.Instance.Money = score;
+        }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -120,6 +125,7 @@ namespace Bullet.Player
                 PlayExplosion();
                 Damage(col.gameObject.GetComponent<Enemy.EnemyControl>().damage); // change this
                 score -= Random.Range(100, 500);
+                GameObject.Find("PlayerUI").GetComponent<PlayerUI>().hit=true;
             }
             else if (col.tag == "EnemyBullet")
             {
