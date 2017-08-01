@@ -24,15 +24,17 @@ public class MenuController : MonoBehaviour
     public bool audioFadeTime;
     public bool kardashevMenuMusicTime;
 
+    //--------------------------------
+    public Image imageGo;
 
 
 
     // Use this for initialization
     void Start()
     {
+        //-----Image
+
         //------Audio
-        kardashevMenuMusicTime = false;
-        audioFadeTime = false;
         //------Storry
         ButtonNext.SetActive(true);
         ImageStorry.SetActive(true);
@@ -109,7 +111,8 @@ public class MenuController : MonoBehaviour
 
     void state_initial_0(){
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "I can't believe we're doing this";
+        text.text = "In a galaxy far, far away...";
+        imageGo.sprite = Resources.Load<Sprite>("KImage1and2");
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
@@ -120,7 +123,7 @@ public class MenuController : MonoBehaviour
     void state_initial_1()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "Earth has been explored to its full potential, it is time for humanity to break through new frontiers.";
+        text.text = "No wait. Someone did that already.";
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
@@ -130,16 +133,19 @@ public class MenuController : MonoBehaviour
     void state_initial_2()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "You were selected among the Braves and skilled pilots to venture through space.";
+        text.text = "Earth: 30,000 A.D.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage3");
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
+            ButtonPress = false;
             myState = States.initial_3;
         }
     }
     void state_initial_3()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "Humanity will now follow your leadership.";
+        text.text = "Look.We’ve conquered the land.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage4");
         if (Input.GetKeyDown(KeyCode.Space)|| ButtonPress)
         {
             ButtonPress = false;
@@ -149,7 +155,9 @@ public class MenuController : MonoBehaviour
     void state_initial_4()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "It is time for humanity to step up in the Galaxy.";
+        text.text = "Conquered the skies.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage5");
+
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
@@ -159,18 +167,21 @@ public class MenuController : MonoBehaviour
     void state_initial_5()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "It is time for humanity to grow";
+        text.text = "And, well, the sea is scary.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage6");
+
         audioFadeTime = true;
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
-            myState = States.initial_9;
+            myState = States.initial_6;
         }
     }
     void state_initial_6()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "state_6";
+        text.text = "It’s time for us to move on. Onto the next frontier.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage7");
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
@@ -180,11 +191,12 @@ public class MenuController : MonoBehaviour
     void state_initial_7()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "state_7";
+        text.text = "The final frontier. Space.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage8");
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ButtonPress = false;
-            myState = States.initial_8;
+            myState = States.initial_9;
         }
     }
     void state_initial_8()
@@ -200,7 +212,8 @@ public class MenuController : MonoBehaviour
     void state_initial_9()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "grow on the Kardashev scale";
+        text.text = "It’s time to grow our civilazation. Growth on the Kardashev scale.";
+        imageGo.sprite = Resources.Load<Sprite>("KImage9");
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
             ImageStorry.SetActive(false);
@@ -242,4 +255,15 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Land_Control");
     }
 
+    public void ClickToChange1()
+    {
+        imageGo.sprite = Resources.Load<Sprite>("KImage1and2");
+        imageGo.sprite = Resources.Load<Sprite>("KImage3");
+        imageGo.sprite = Resources.Load<Sprite>("KImage4");
+        imageGo.sprite = Resources.Load<Sprite>("KImage5");
+        imageGo.sprite = Resources.Load<Sprite>("KImage6");
+        imageGo.sprite = Resources.Load<Sprite>("KImage7");
+        imageGo.sprite = Resources.Load<Sprite>("KImage8");
+        imageGo.sprite = Resources.Load<Sprite>("KImage9");
+    }
 }
