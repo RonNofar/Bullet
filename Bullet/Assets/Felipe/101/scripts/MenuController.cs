@@ -144,7 +144,7 @@ public class MenuController : MonoBehaviour
     void state_initial_3()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "Look.We’ve conquered the land.";
+        text.text = "Look. We’ve conquered the land.";
         imageGo.sprite = Resources.Load<Sprite>("KImage4");
         if (Input.GetKeyDown(KeyCode.Space)|| ButtonPress)
         {

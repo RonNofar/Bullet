@@ -12,7 +12,14 @@ public class Canvas : MonoBehaviour {
     //Shop Canvas OBJ
     public GameObject ShopWindow;
 
+    //BuyFeedBack
+    public bool soldAnimation;
     public Text PlayerMoneyText;
+    public Text ShoptotalPriceText;
+    public Text PlayerMoneyLeftText;
+    public GameObject BuyFxFingerPrint;
+
+    public float totalPrice;
     public float ConfirmedPlayerMoneyCanvas;
     public float NotConfirmedPlayerMoneyCanvas;
 
@@ -31,7 +38,10 @@ public class Canvas : MonoBehaviour {
     }
 
     public void Start() {
-        
+        soldAnimation = true;
+        //buyFX
+        ShoptotalPriceText.text = "$ " + totalPrice.ToString("F0");
+        BuyFxFingerPrint.SetActive(false);
         //PlayerItemsScript = player.GetComponent<PlayerMaster>();
         ConfirmedPlayerMoneyCanvas = player.Money;
         NotConfirmedPlayerMoneyCanvas = ConfirmedPlayerMoneyCanvas;
@@ -51,9 +61,18 @@ public class Canvas : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
-
         //Check Money 
-        PlayerMoneyText.text="$ "+NotConfirmedPlayerMoneyCanvas.ToString("F0");
+        totalPrice = ConfirmedPlayerMoneyCanvas - NotConfirmedPlayerMoneyCanvas;
+        PlayerMoneyLeftText.text = "$ " + NotConfirmedPlayerMoneyCanvas.ToString("F0");
+        if (totalPrice>0)
+        {
+            if (BuyFxFingerPrint.activeInHierarchy)
+            {
+                BuyFxFingerPrint.SetActive(false);
+            }
+            ShoptotalPriceText.text = "$ " + totalPrice.ToString("F0");
+        }
+        PlayerMoneyText.text = "$ " + ConfirmedPlayerMoneyCanvas.ToString("F0");
         //Make shure all resets defolt position on disactivating script
         if (CloseCanvas)
         {
@@ -93,9 +112,22 @@ public class Canvas : MonoBehaviour {
         player.Money = ConfirmedPlayerMoneyCanvas;
         CloseCanvas = true;
     }
-/*
-    void SaveAllPoints() {
-        ShopPowerUp1.GetComponent<PowerUp>().Start();
+
+    public void BuyFeedBack() {
+        soldAnimation = false;
+        ShoptotalPriceText.text = "";
+        BuyFxFingerPrint.SetActive(true);
+        StartCoroutine(OffFX(2f));
     }
-*/
+    IEnumerator OffFX(float time)
+    {
+        if (!soldAnimation)
+        {
+            yield return new WaitForSeconds(time);
+            if(!soldAnimation) {
+                ShoptotalPriceText.text = "SOLD";
+                soldAnimation = true;
+            }
+        }
+    }
 }

@@ -1,0 +1,931 @@
+fileFormatVersion: 2
+guid: 5031a0115db7440e7b931c0503af22f6
+timeCreated: 1501632229
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Effect_05_26
+    21300002: Effect_05_25
+    21300004: Effect_05_27
+    21300006: Effect_05_28
+    21300008: Effect_05_29
+    21300010: Effect_05_30
+    21300012: Effect_05_31
+    21300014: Effect_05_24
+    21300016: Effect_05_16
+    21300018: Effect_05_17
+    21300020: Effect_05_18
+    21300022: Effect_05_19
+    21300024: Effect_05_20
+    21300026: Effect_05_21
+    21300028: Effect_05_22
+    21300030: Effect_05_23
+    21300032: Effect_32
+    21300034: Effect_05_33
+    21300036: Effect_05_34
+    21300038: Effect_05_35
+    21300040: Effect_05_36
+    21300042: Effect_05_37
+    21300044: Effect_05_38
+    21300046: Effect_05_39
+    21300048: Effect_05_40
+    21300050: Effect_05_41
+    21300052: Effect_05_42
+    21300054: Effect_05_43
+    21300056: Effect_05_44
+    21300058: Effect_05_45
+    21300060: Effect_05_46
+    21300062: Effect_05_47
+    21300064: Effect_05_48
+    21300066: Effect_05_49
+    21300068: Effect_05_50
+    21300070: Effect_05_51
+    21300072: Effect_05_52
+    21300074: Effect_05_53
+    21300076: Effect_05_54
+    21300078: Effect_05_55
+    21300080: Effect_05_56
+    21300082: Effect_05_57
+    21300084: Effect_05_58
+    21300086: Effect_05_59
+    21300088: Effect_05_60
+    21300090: Effect_05_8x8-64_45
+    21300092: Effect_05_8
+    21300094: Effect_05_9
+    21300096: Effect_05_10
+    21300098: Effect_05_11
+    21300100: Effect_05_12
+    21300102: Effect_05_13
+    21300104: Effect_05_14
+    21300106: Effect_05_15
+    21300108: Effect_05_7
+    21300110: Effect_05_6
+    21300112: Effect_05_5
+    21300114: Effect_05_4
+    21300116: Effect_05_3
+    21300118: Effect_05_2
+    21300120: Effect_05_1
+    21300122: Effect_05_0
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_05_26
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_25
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_27
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_28
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_29
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_30
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_31
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_24
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 2090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_16
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_17
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_18
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_19
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_20
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_21
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_22
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_23
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 2590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_32
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_33
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_34
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_35
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_36
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_37
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_38
+      rect:
+        serializedVersion: 2
+        x: 3100
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_39
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 1590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_40
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_41
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_42
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_43
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_44
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_45
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_46
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_47
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 1090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_48
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_49
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_50
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_51
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_52
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_53
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_54
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_55
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_56
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 90
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_57
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 90
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_58
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 90
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_59
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 90
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_60
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 90
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_9
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_10
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_11
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_12
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_13
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_14
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 3095
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_15
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 3090
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_7
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 3590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_6
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 3590
+        width: 450
+        height: 449
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_5
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 3590
+        width: 450
+        height: 449
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_4
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 3590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_3
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 3590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_2
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 3590
+        width: 450
+        height: 449
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_1
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3590
+        width: 450
+        height: 444
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Effect_05_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 3590
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
