@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour {
 
     public int ThisItemID;
-
+    public Text textItemName;
+    public Text textItemDescription;
     public GameObject Shop;
     private Canvas ShopItemsScript;
 
@@ -26,13 +27,18 @@ public class PowerUp : MonoBehaviour {
     public int Lvl_0PowerUpPriceNumber;
 
     // Use this for initialization
+   
     public void Start()
     {
         ShopItemsScript = Shop.GetComponent<Canvas>();
         Lvl_0PowerUpPriceNumber = 100;
         timeToChangePowerLevel = false;
         NotConfirmedPowerLevel = 0;
+        //update lvl
         CurrentPowerLevel=ShopItemsScript.itemsOnShop[ThisItemID].GetLevel();
+        //update text
+        textItemName.text = ShopItemsScript.itemsOnShop[ThisItemID].GetName();
+        textItemDescription.text = ShopItemsScript.itemsOnShop[ThisItemID].GetDescription();
         //CurrentPowerLevel = testvarCurentPower;
 
         //PowerUpPriceNumber = testvarPowerUpPriceNumber;
@@ -61,6 +67,10 @@ public class PowerUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //update text
+        textItemName.text = ShopItemsScript.itemsOnShop[ThisItemID].GetName();
+        textItemDescription.text = ShopItemsScript.itemsOnShop[ThisItemID].GetDescription();
+        //----
         varCurentPower = CurrentPowerLevel;
         if (timeToChangePowerLevel)
         {

@@ -13,8 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 3}
+  - {fileID: 7}
   - {fileID: 9}
+<<<<<<< HEAD
   - {fileID: 14}
+=======
+  - {fileID: 11}
+>>>>>>> origin/felipe
   m_Position:
     serializedVersion: 2
     x: 0
@@ -24,7 +29,11 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 802
+=======
+  controlID: 47024
+>>>>>>> origin/felipe
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -48,21 +57,34 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 321
     width: 686
     height: 425
+=======
+    y: 316
+    width: 1049
+    height: 702
+>>>>>>> origin/felipe
   m_MaximizeOnPlay: 1
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
+<<<<<<< HEAD
     m_HBaseRangeMin: -343
     m_HBaseRangeMax: 343
     m_VBaseRangeMin: -204
     m_VBaseRangeMax: 204
+=======
+    m_HBaseRangeMin: -524.5
+    m_HBaseRangeMax: 524.5
+    m_VBaseRangeMin: -295.03125
+    m_VBaseRangeMax: 295.03125
+>>>>>>> origin/felipe
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -79,25 +101,43 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
+<<<<<<< HEAD
       width: 686
       height: 408
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 343, y: 204}
+=======
+      width: 1049
+      height: 685
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 524.5, y: 342.5}
+>>>>>>> origin/felipe
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -343
       y: -204
       width: 686
       height: 408
+=======
+      x: -524.5
+      y: -342.5
+      width: 1049
+      height: 685
+>>>>>>> origin/felipe
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
+<<<<<<< HEAD
   m_LastWindowPixelSize: {x: 686, y: 425}
+=======
+  m_LastWindowPixelSize: {x: 1049, y: 702}
+>>>>>>> origin/felipe
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -114,17 +154,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 4}
+<<<<<<< HEAD
   - {fileID: 7}
+=======
+  - {fileID: 6}
+>>>>>>> origin/felipe
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 688
     height: 675
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
   controlID: 692
+=======
+    width: 1051
+    height: 947
+  m_MinSize: {x: 202, y: 442}
+  m_MaxSize: {x: 4002, y: 8042}
+  vertical: 1
+  controlID: 47025
+>>>>>>> origin/felipe
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,6 +194,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 688
     height: 229
   m_MinSize: {x: 202, y: 221}
@@ -151,6 +205,17 @@ MonoBehaviour:
   - {fileID: 6}
   m_Selected: 0
   m_LastSelected: 1
+=======
+    width: 1051
+    height: 224
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
+  m_ActualView: {fileID: 5}
+  m_Panes:
+  - {fileID: 5}
+  m_Selected: 0
+  m_LastSelected: 0
+>>>>>>> origin/felipe
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,17 +240,30 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 92
+<<<<<<< HEAD
     width: 686
     height: 208
   m_SceneLighting: 1
   lastFramingTime: 0
+=======
+    width: 1049
+    height: 203
+  m_SceneLighting: 1
+  lastFramingTime: 151544.90027832045
+>>>>>>> origin/felipe
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 22.767, y: 3.9641495, z: -2.4359589}
     speed: 2
     m_Value: {x: 22.767, y: 3.9641495, z: -2.4359589}
+=======
+    m_Target: {x: -29.829405, y: 7.0351596, z: -9}
+    speed: 2
+    m_Value: {x: -29.829405, y: 7.0351596, z: -9}
+>>>>>>> origin/felipe
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -212,9 +290,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 83.42036
     speed: 2
     m_Value: 83.42036
+=======
+    m_Target: 5.356346
+    speed: 2
+    m_Value: 5.356346
+>>>>>>> origin/felipe
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -233,6 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+<<<<<<< HEAD
   m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -312,6 +397,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+=======
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+>>>>>>> origin/felipe
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
@@ -319,6 +407,7 @@ MonoBehaviour:
   - {fileID: 12}
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 688
     y: 0
     width: 398
@@ -328,6 +417,20 @@ MonoBehaviour:
   vertical: 1
   controlID: 776
 --- !u!114 &10
+=======
+    x: 0
+    y: 224
+    width: 1051
+    height: 723
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 2}
+  m_Panes:
+  - {fileID: 2}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &7
+>>>>>>> origin/felipe
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -341,6 +444,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 0
     width: 398
@@ -353,6 +457,20 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &11
+=======
+    x: 1051
+    y: 0
+    width: 204
+    height: 947
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
+  m_ActualView: {fileID: 8}
+  m_Panes:
+  - {fileID: 8}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &8
+>>>>>>> origin/felipe
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -374,6 +492,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 690
     y: 92
     width: 394
@@ -383,6 +502,17 @@ MonoBehaviour:
     m_SelectedIDs: d2fbffff
     m_LastClickedID: -1070
     m_ExpandedIDs: e4fbffff00000000
+=======
+    x: 1053
+    y: 92
+    width: 200
+    height: 926
+  m_TreeViewState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: a6550800
+    m_LastClickedID: 546214
+    m_ExpandedIDs: 6abbeeffac9cf5ff64c8f5ff3accf5ff70d1f5ff5ce5f5ff88e5f5ffbce5f5ff4ae7f5ff8074f7ff8674f7ff088af8ff0e8af8ff148af8ff1a8af8ff6a8bf8ff708bf8ff26e4f8ff86f2f8ffd2f5f8ff8666fcff00000000208e0700cc8e0700da8e0700de8e070076900700a2910700f2940700c89a070008a907001aa90700d8a9070004aa070056ad0700
+>>>>>>> origin/felipe
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -398,6 +528,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 0
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
   m_ExpandedScenes:
@@ -406,6 +537,15 @@ MonoBehaviour:
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
 --- !u!114 &12
+=======
+      m_ClientGUIView: {fileID: 7}
+    m_SearchString: 
+  m_ExpandedScenes: []
+  m_CurrenRootInstanceID: 0
+  m_Locked: 0
+  m_CurrentSortingName: TransformSorting
+--- !u!114 &9
+>>>>>>> origin/felipe
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -419,6 +559,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 268
     width: 398
@@ -431,6 +572,20 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &13
+=======
+    x: 1255
+    y: 0
+    width: 236
+    height: 947
+  m_MinSize: {x: 234, y: 271}
+  m_MaxSize: {x: 10004, y: 10021}
+  m_ActualView: {fileID: 10}
+  m_Panes:
+  - {fileID: 10}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &10
+>>>>>>> origin/felipe
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -452,10 +607,17 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 690
     y: 360
     width: 394
     height: 386
+=======
+    x: 1257
+    y: 92
+    width: 232
+    height: 926
+>>>>>>> origin/felipe
   m_SearchFilter:
     m_NameFilter: 
     m_ClassNames: []
@@ -467,10 +629,15 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
+<<<<<<< HEAD
     - Assets/Felipe/TEXTURE/Nebula Skyboxes/Skybox Simple Nebula/Materials
+=======
+    - Assets/Scenes
+>>>>>>> origin/felipe
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Felipe/TEXTURE/Nebula Skyboxes/Skybox Simple Nebula/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Users\ronno\Projects\ProjectBullet\Bullet
@@ -480,6 +647,17 @@ MonoBehaviour:
     m_SelectedIDs: ca340000
     m_LastClickedID: 13514
     m_ExpandedIDs: 000000001a250000ca250000aa280000262900006a2a00004c2d000066310000dc330000f83300001038000000ca9a3bffffff7f
+=======
+  - Assets/Scenes
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: C:\Users\Mexicano\Documents\GitHub\ProjectBullet\Bullet
+  m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: f0390000
+    m_LastClickedID: 14832
+    m_ExpandedIDs: 000000001c250000d02500003628000048290000f4290000242b00006e2d0000302e00006e3000006e32000030330000b2330000f6340000e8390000423a00000c13070000ca9a3bffffff7f
+>>>>>>> origin/felipe
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -507,7 +685,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000001a250000ca250000aa280000262900006a2a00004c2d000066310000dc330000f83300001038000000ca9a3bffffff7f
+=======
+    m_ExpandedIDs: 000000001c250000d02500003628000048290000f4290000242b00006e2d0000302e00006e3000006e32000030330000b2330000f6340000e8390000423a00000c13070000ca9a3bffffff7f
+>>>>>>> origin/felipe
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -532,10 +714,17 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: d2fbffff
     m_LastClickedInstanceID: -1070
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
+=======
+    m_SelectedInstanceIDs: a6550800
+    m_LastClickedInstanceID: 546214
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: 00000000583a0000
+>>>>>>> origin/felipe
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -551,7 +740,11 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 12}
+=======
+      m_ClientGUIView: {fileID: 9}
+>>>>>>> origin/felipe
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -560,9 +753,15 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
+<<<<<<< HEAD
     m_GridSize: 16
   m_DirectoriesAreaWidth: 141
 --- !u!114 &14
+=======
+    m_GridSize: 64
+  m_DirectoriesAreaWidth: 112
+--- !u!114 &11
+>>>>>>> origin/felipe
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -576,6 +775,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1086
     y: 0
     width: 280
@@ -588,6 +788,20 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &15
+=======
+    x: 1491
+    y: 0
+    width: 429
+    height: 947
+  m_MinSize: {x: 277, y: 74}
+  m_MaxSize: {x: 4002, y: 4024}
+  m_ActualView: {fileID: 12}
+  m_Panes:
+  - {fileID: 12}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &12
+>>>>>>> origin/felipe
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -609,11 +823,19 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1088
     y: 92
     width: 278
     height: 654
   m_ScrollPosition: {x: 0, y: 180}
+=======
+    x: 1493
+    y: 92
+    width: 427
+    height: 926
+  m_ScrollPosition: {x: 0, y: 0}
+>>>>>>> origin/felipe
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
