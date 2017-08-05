@@ -10,7 +10,11 @@ namespace Bullet.Enemy
         float speed;
         Vector2 _direction;
         bool isReady;
-        public float damage = 10f;
+        [HideInInspector]
+        public float damage;
+
+        [SerializeField]
+        private GameObject explosionPrefab;
 
         private void Awake()
         {
@@ -50,6 +54,8 @@ namespace Bullet.Enemy
         {
             if (col.tag == "PlayerShip")
             {
+                GameObject explosion = Instantiate(explosionPrefab);
+                explosion.transform.position = transform.position;
                 Destroy(gameObject);
             }
         }

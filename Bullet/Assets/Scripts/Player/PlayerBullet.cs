@@ -10,6 +10,8 @@ namespace Bullet.Player
         new Transform transform;
 
         public float speed = 8f;
+        [SerializeField]
+        private GameObject explosionPrefab;
 
         // Use this for initialization
         void Start()
@@ -39,6 +41,8 @@ namespace Bullet.Player
         {
             if (col.tag == "EnemyShip")
             {
+                GameObject explosion = Instantiate(explosionPrefab);
+                explosion.transform.position = transform.position;
                 Destroy(gameObject);
                 Player.PlayerController.Instance.score += Random.Range(100, 500);
             }
