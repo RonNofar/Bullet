@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    //-----Audio
+    public GameObject AudioControler;
+    private bool requestedChange;
     //------------------------------------Storry Part
     public Text text;
     public bool ButtonPress = false;
@@ -34,7 +37,8 @@ public class MenuController : MonoBehaviour
     {
         //-----Image
 
-        //------Audio
+        //------Audio'
+        requestedChange = false;
         //------Storry
         ButtonNext.SetActive(true);
         ImageStorry.SetActive(true);
@@ -224,6 +228,12 @@ public class MenuController : MonoBehaviour
     }
     void state_initial_10()
     {
+        if (!requestedChange)
+        {
+            requestedChange = true;
+            AudioControler.GetComponent<AudioScript>().timeToChangeTrack = true;
+        }
+
         text.alignment = TextAnchor.MiddleCenter;
         //MENU
         kardashevMenuMusicTime = true;

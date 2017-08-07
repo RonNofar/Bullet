@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    public GameObject AudioController;
+
     public bool ReadyToLeave;
     public bool lostPlayer;
     public bool lostPlayer2;
@@ -155,6 +157,9 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Return))
             {
+                //Sound
+                AudioController.GetComponent<AudioScript2>().OpenClickSound();
+
                 if (!ShopCanvas.activeInHierarchy)
                 {
                     ShopCanvas.SetActive(true);
@@ -165,6 +170,7 @@ public class Player : MonoBehaviour
                 {
                     //Ask for script to hide it self
                     ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
+                    AudioController.GetComponent<AudioScript2>().OpenClickSound();
 
                     //ShopCanvas.SetActive(false);
                     // Cursor.visible = false;
@@ -175,6 +181,7 @@ public class Player : MonoBehaviour
         else if (ShopCanvas.activeInHierarchy) {
             //Ask for script to hide it self
             ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
+            AudioController.GetComponent<AudioScript2>().OpenClickSound();
             //ShopCanvas.SetActive(false);
             //Cursor.visible = false;
         }
