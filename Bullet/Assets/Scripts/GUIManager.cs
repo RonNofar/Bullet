@@ -18,8 +18,9 @@ namespace Bullet.UI
 
         void FixedUpdate()
         {
+            /*SetScoreImage(player.score);
             score.text = player.score.ToString();
-            //SetScoreImage(player.score);
+            Debug.Log(score);*/
         }
 
         void SetScoreImage(int score)

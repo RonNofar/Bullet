@@ -45,9 +45,13 @@ namespace Bullet.Enemy
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if ((col.tag == "PlayerShip") || (col.tag == "PlayerBullet"))
+            if (col.tag == "PlayerBullet")
             {
                 Damage(Player.PlayerController.Instance.GetDamageAmount());
+            }
+            else if (col.tag == "PlayerShip")
+            {
+                Death();
             }
         }
 
