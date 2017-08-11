@@ -63,4 +63,8 @@ public class MenuInGame : MonoBehaviour
         GameObject.Find("MenuUI").GetComponent<MenuController>().myState = MenuController.States.initial_10;
         this.gameObject.SetActive(false);
     }
+    public void ButtonAbortMission()
+    {
+        SceneManager.LoadScene("Land_Control");
+    }
 }

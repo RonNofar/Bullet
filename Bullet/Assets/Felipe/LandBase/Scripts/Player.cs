@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public GameObject AudioController;
 
     public bool ReadyToLeave;
+    public bool stepingOnTutorialDoor;
     public bool lostPlayer;
     public bool lostPlayer2;
     public bool stepingOnShop;
@@ -151,6 +152,19 @@ public class Player : MonoBehaviour
                 }
 
             }
+        if (controller.collisions.stepingOnTutorialDoor)
+        {
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                //hide base2
+                Vector3 TutorialPosition;
+                TutorialPosition = new Vector3(-55,10,0);
+                TutorialPosition = TutorialPosition - this.transform.position;
+                PlayerObj.transform.Translate(TutorialPosition, Space.World);
+               // print("***********putona*************");
+            }
+
+        }
         if (controller.collisions.Onshop)
         {
             stepingOnShop = true;
@@ -199,8 +213,13 @@ public class Player : MonoBehaviour
             ReadyToLeave = true;
         }
         else
-    
             ReadyToLeave = false;
+        if (controller.collisions.stepingOnTutorialDoor)
+        {
+            stepingOnTutorialDoor = true;
+        }
+        else
+            stepingOnTutorialDoor = false;
     }
 
 }
