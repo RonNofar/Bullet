@@ -3,34 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class MenuInGame : MonoBehaviour {
+public class MenuInGame : MonoBehaviour
+{
+    public Transform buttonSave;
+    public Transform buttonOption;
 
-	// Use this for initialization
-	void Start () {
-        Cursor.visible = true;
+    public GameObject AbortMissionButton;
+    public GameObject SkipButton;
+    // Use this for initialization
+    void Start()
+    {
+        string sceneName;
+        sceneName=SceneManager.GetActiveScene().name;
+        print(sceneName);
+        buttonSave.GetComponent<Button>().interactable = false;
+        buttonOption.GetComponent<Button>().interactable = false;
+
+        if (sceneName == "Land_Control")
+        {
+            // Do something...
+            SkipButton.SetActive(false);
+            AbortMissionButton.SetActive(false);
+        }
+        else if (SceneManager.GetActiveScene().name == "_main")
+        {
+            SkipButton.SetActive(false);
+            // Do something...
+        }
+        else if (SceneManager.GetActiveScene().name == "101")
+
+        {
+            AbortMissionButton.SetActive(false);
+            SkipButton.SetActive(true);
+            // Do something...
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = true;
         //Debug.Log(SceneManager.GetActiveScene().name);
-
-        if (SceneManager.GetActiveScene().name == "Land_Control")
-        {
-            // Do something...
-
-            for (int i = 0; i < Item.TotalNumberOfItems; i++)
-            {
-               // savedItems[i] = Bullet.PlayerMaster.Instance.itemsUnlocked[i];
-            }
-            //savedMoney = Bullet.PlayerMaster.Instance.Money;
-
-        }
-        else if (SceneManager.GetActiveScene().name == "_main")
-        {
-            // Do something...
-        }
-
+    }
+    public void ButtonExitF()
+    {
+        Application.Quit();
+    }
+    public void ButtonContinue()
+    {
+        
+        this.gameObject.SetActive(false);
+        if(SceneManager.GetActiveScene().name != "101")
+        Cursor.visible = false;
+    }
+    public void ButtonSkipIntro()
+    {
+        GameObject.Find("MenuUI").GetComponent<MenuController>().myState = MenuController.States.initial_10;
+        this.gameObject.SetActive(false);
+    }
+    public void ButtonAbortMission()
+    {
+        SceneManager.LoadScene("Land_Control");
     }
 }

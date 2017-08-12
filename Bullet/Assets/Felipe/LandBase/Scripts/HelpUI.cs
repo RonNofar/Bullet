@@ -7,6 +7,7 @@ public class HelpUI : MonoBehaviour
     public GameObject player;
     public GameObject enterShip;
     public GameObject enterShop;
+    public GameObject enterTutorial;
     public GameObject arrowKey;
     public GameObject SpaceBar;
 
@@ -32,6 +33,7 @@ public class HelpUI : MonoBehaviour
         numberOfTimesMovePress = 0;
 
         SpaceBar.SetActive(false);
+        enterTutorial.SetActive(false);
         enterShip.SetActive(false);
         enterShop.SetActive(false);
         arrowKey.SetActive(false);
@@ -102,6 +104,12 @@ public class HelpUI : MonoBehaviour
         }
         else
             enterShip.SetActive(false);
+        if (player.GetComponent<Player>().stepingOnTutorialDoor)
+        {
+            enterTutorial.SetActive(true);
+        }
+        else
+            enterTutorial.SetActive(false);
         if (notMoving)
         {
             arrowKey.SetActive(true);

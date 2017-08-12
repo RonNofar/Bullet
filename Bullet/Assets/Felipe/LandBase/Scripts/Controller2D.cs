@@ -173,7 +173,14 @@ public class Controller2D : RaycastController
                 if (hit.collider.tag == "GoToLevel")
                 {
                     collisions.ReadyToLeave = true;
+                }else
+                    collisions.ReadyToLeave = false;
+                if (hit.collider.tag == "GoToTutorial")
+                {
+                    collisions.stepingOnTutorialDoor = true;
                 }
+                else
+                    collisions.stepingOnTutorialDoor = false;
                 if (hit.collider.tag == "Instructions")
                 {
                     collisions.NeedHelp = true;
@@ -256,6 +263,7 @@ public class Controller2D : RaycastController
 
         public bool Onshop;
         public bool ReadyToLeave;
+        public bool stepingOnTutorialDoor;
 
         public bool above, below;
         public bool left, right;
@@ -272,6 +280,7 @@ public class Controller2D : RaycastController
             NeedHelp = false;
             Onshop = false;
             ReadyToLeave = false;
+            stepingOnTutorialDoor = false;
 
             above = below = false;
             left = right = false;

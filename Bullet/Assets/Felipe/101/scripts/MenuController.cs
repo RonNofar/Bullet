@@ -5,16 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    //-----Audio
+    public GameObject AudioControler;
+    private bool requestedChange;
     //------------------------------------Storry Part
     public Text text;
     public bool ButtonPress = false;
     public GameObject ButtonNext;
     public GameObject KardashevImage;
     public GameObject ImageStorry;
-    private enum States { initial_0, initial_1, initial_2, initial_3, initial_4, initial_5, initial_6, initial_7, initial_8, initial_9, initial_10};
-    private States myState;
+    public enum States { initial_0, initial_1, initial_2, initial_3, initial_4, initial_5, initial_6, initial_7, initial_8, initial_9, initial_10};
+    public States myState;
     //-------------------------------------
     //-------------------------------Main_Menu
+    public Transform buttonOption;
+
     public GameObject ButtonNewGame;
     public GameObject ButtonOptions;
     public GameObject ButtonExit;
@@ -34,13 +39,16 @@ public class MenuController : MonoBehaviour
     {
         //-----Image
 
-        //------Audio
+        //------Audio'
+        requestedChange = false;
         //------Storry
         ButtonNext.SetActive(true);
         ImageStorry.SetActive(true);
         myState = States.initial_0;
         //--------------
         //-----Main_Menu
+        buttonOption.GetComponent<Button>().interactable = false;
+
         ButtonsMenuBackground.SetActive(false);
         KardashevImage.SetActive(false);
         ButtonNewGame.SetActive(false);
@@ -212,18 +220,24 @@ public class MenuController : MonoBehaviour
     void state_initial_9()
     {
         text.alignment = TextAnchor.MiddleCenter;
-        text.text = "It’s time to grow our civilazation. Growth on the Kardashev scale.";
+        text.text = "It’s time to grow our civilization. Growth on the Kardashev scale.";
         imageGo.sprite = Resources.Load<Sprite>("KImage9");
         if (Input.GetKeyDown(KeyCode.Space) || ButtonPress)
         {
-            ImageStorry.SetActive(false);
-            ButtonNext.SetActive(false);
-            ButtonPress = false;
             myState = States.initial_10;
         }
     }
-    void state_initial_10()
+    public void state_initial_10()
     {
+        ImageStorry.SetActive(false);
+        ButtonNext.SetActive(false);
+        ButtonPress = false;
+        if (!requestedChange)
+        {
+            requestedChange = true;
+            AudioControler.GetComponent<AudioScript>().timeToChangeTrack = true;
+        }
+
         text.alignment = TextAnchor.MiddleCenter;
         //MENU
         kardashevMenuMusicTime = true;

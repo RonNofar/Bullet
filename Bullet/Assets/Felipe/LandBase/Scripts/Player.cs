@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    public GameObject AudioController;
+
     public bool ReadyToLeave;
+    public bool stepingOnTutorialDoor;
     public bool lostPlayer;
     public bool lostPlayer2;
     public bool stepingOnShop;
@@ -149,12 +152,28 @@ public class Player : MonoBehaviour
                 }
 
             }
+        if (controller.collisions.stepingOnTutorialDoor)
+        {
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                //hide base2
+                Vector3 TutorialPosition;
+                TutorialPosition = new Vector3(-55,10,0);
+                TutorialPosition = TutorialPosition - this.transform.position;
+                PlayerObj.transform.Translate(TutorialPosition, Space.World);
+               // print("***********putona*************");
+            }
+
+        }
         if (controller.collisions.Onshop)
         {
             stepingOnShop = true;
 
             if (Input.GetKeyUp(KeyCode.Return))
             {
+                //Sound
+                AudioController.GetComponent<AudioScript2>().OpenClickSound();
+
                 if (!ShopCanvas.activeInHierarchy)
                 {
                     ShopCanvas.SetActive(true);
@@ -165,6 +184,7 @@ public class Player : MonoBehaviour
                 {
                     //Ask for script to hide it self
                     ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
+                    AudioController.GetComponent<AudioScript2>().OpenClickSound();
 
                     //ShopCanvas.SetActive(false);
                     // Cursor.visible = false;
@@ -175,6 +195,7 @@ public class Player : MonoBehaviour
         else if (ShopCanvas.activeInHierarchy) {
             //Ask for script to hide it self
             ShopCanvas.GetComponent<Canvas>().CloseCanvasFunction();
+            AudioController.GetComponent<AudioScript2>().OpenClickSound();
             //ShopCanvas.SetActive(false);
             //Cursor.visible = false;
         }
@@ -192,8 +213,13 @@ public class Player : MonoBehaviour
             ReadyToLeave = true;
         }
         else
-    
             ReadyToLeave = false;
+        if (controller.collisions.stepingOnTutorialDoor)
+        {
+            stepingOnTutorialDoor = true;
+        }
+        else
+            stepingOnTutorialDoor = false;
     }
 
 }
