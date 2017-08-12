@@ -20,8 +20,6 @@ namespace Bullet.Player
         [Tooltip("DO NOT TOUCH")]
         public float health;
 
-        public Wave[] test;
-
         [Header("Player Stats (Pre-Load)")]
         [SerializeField]
         private float baseSpeed = 5f;
