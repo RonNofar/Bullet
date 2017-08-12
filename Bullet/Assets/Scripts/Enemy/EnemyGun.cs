@@ -11,6 +11,8 @@ namespace Bullet.Enemy
         private GameObject EnemyBulletPrefab;
 
         [SerializeField]
+        private float projectileSpeed = 5f;
+        [SerializeField]
         private bool isAtPlayer = true;
         [SerializeField]
         private bool isSpreadShot = false;
@@ -24,6 +26,13 @@ namespace Bullet.Enemy
         public float roundDelay = 1f; // Amount of time between rounds
 
         public float damage = 10f;
+
+        private float SQRTTWO;
+
+        private void Awake()
+        {
+            SQRTTWO = Mathf.Sqrt(2);
+        }
 
         // Use this for initialization
         void Start()
@@ -71,12 +80,13 @@ namespace Bullet.Enemy
                     if (isAtPlayer) direction = playerShip.transform.position - bullet.transform.position;
                     else if (isSpreadShot)
                     {
-                        if (b) { direction = new Vector2(-1, -1); --i; b = false; }
-                        else direction = new Vector2(1, -1);
+                        if (b) { direction = new Vector2(-SQRTTWO, -SQRTTWO); --i; b = false; }
+                        else direction = new Vector2(SQRTTWO, -SQRTTWO);
                     }
                     else direction = new Vector2(0, -1);
 
                     EnemyBullet eb = bullet.GetComponent<EnemyBullet>();
+                    eb.speed = projectileSpeed;
                     eb.SetDirection(direction);
                     eb.damage = damage;
                 }

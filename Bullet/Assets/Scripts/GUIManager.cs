@@ -15,6 +15,27 @@ namespace Bullet.UI
         private Image[] textImages;
         [SerializeField]
         private Sprite[] numberSprites;
+        [SerializeField]
+        private GameObject GameOverCanvas;
+
+        static public GUIManager Instance { get { return _instance; } }
+        static protected GUIManager _instance;
+
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Debug.LogWarning("GUI Manager is already in play. Deleting new!", gameObject);
+                Destroy(gameObject);
+            }
+            else
+            { _instance = this; }
+        }
+
+        private void Start()
+        {
+            GameOverCanvas.SetActive(false);
+        }
 
         void FixedUpdate()
         {
@@ -53,6 +74,11 @@ namespace Bullet.UI
                 textImages[2].sprite = numberSprites[9];
                 textImages[3].sprite = numberSprites[9];
             }
+        }
+
+        public void ActivateGameOver()
+        {
+            GameOverCanvas.SetActive(true);
         }
     }
 }

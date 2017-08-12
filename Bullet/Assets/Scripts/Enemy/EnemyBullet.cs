@@ -7,7 +7,7 @@ namespace Bullet.Enemy
     public class EnemyBullet : MonoBehaviour
     {
 
-        float speed;
+        public float speed;
         Vector2 _direction;
         bool isReady;
         [HideInInspector]
@@ -18,7 +18,6 @@ namespace Bullet.Enemy
 
         private void Awake()
         {
-            speed = 5f;
             isReady = false;
         }
 

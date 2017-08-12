@@ -87,9 +87,24 @@ namespace Bullet.Player
         [SerializeField]
         private GameObject explosionPrefab;
 
+        [Header("Death")]
+        [SerializeField]
+        private float deathDelay;
+        [SerializeField]
+        private int explosionAmount;
+        [SerializeField]
+        private float[] delayRange;
+
         [Header("Maintenance Variables")]
         [SerializeField]
         private float RayRange = 1000f;
+        [SerializeField]
+        private SpriteRenderer sr;
+        [SerializeField]
+        private GameObject playerCanvas;
+
+        [HideInInspector]
+        public bool isDead = false;
 
         private int _score = 0;
         [HideInInspector]
@@ -111,7 +126,7 @@ namespace Bullet.Player
 
             try
             {
-                score = (int)Bullet.PlayerMaster.Instance.Money;
+                //score = (int)Bullet.PlayerMaster.Instance.Money;
                 LoadItems(PlayerMaster.Instance.itemsUnlocked);
             }
             catch
@@ -121,11 +136,9 @@ namespace Bullet.Player
 
             stamina = totalStamina;
             health = totalHealth;
-        }
-        //kill me ...(Update) and OnDestroy
-        void OnDestroy()
-        {
-            Bullet.PlayerMaster.Instance.Money = score;
+
+            sr.enabled = true;
+            playerCanvas.SetActive(true);
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -135,7 +148,7 @@ namespace Bullet.Player
                 PlayExplosion();
                 Damage(col.gameObject.GetComponent<Enemy.EnemyControl>().damage); // change this
                 score -= Random.Range(100, 500);
-                GameObject.Find("PlayerUI").GetComponent<PlayerUI>().hit=true;
+                //GameObject.Find("PlayerUI").GetComponent<PlayerUI>().hit=true;
             }
             else if (col.tag == "EnemyBullet")
             {
@@ -147,49 +160,55 @@ namespace Bullet.Player
         #region Movement
         public void KeyMove(Vector2 direction)
         {
-            Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-            Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-
-            max.x = max.x - 0.225f; // <-- Use half of player bounds.x here
-            min.x = min.x + 0.225f;
-
-            max.y = max.y - 0.285f;
-            min.y = min.y + 0.285f;
-
-            Vector2 pos = transform.position;
-
-            float temp_speed = speed;
-            if (isStamina && stamina != 0f)
+            if (!isDead)
             {
-                temp_speed = speed * staminaScaler;
+                Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+                Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-                stamina -= depleteRate;
-                if (stamina < 0) stamina = 0;
+                max.x = max.x - 0.225f; // <-- Use half of player bounds.x here
+                min.x = min.x + 0.225f;
+
+                max.y = max.y - 0.285f;
+                min.y = min.y + 0.285f;
+
+                Vector2 pos = transform.position;
+
+                float temp_speed = speed;
+                if (isStamina && stamina != 0f)
+                {
+                    temp_speed = speed * staminaScaler;
+
+                    stamina -= depleteRate;
+                    if (stamina < 0) stamina = 0;
+                }
+                else if (!isStamina && stamina < totalStamina)
+                {
+                    stamina += depleteRate;
+                    if (stamina > totalStamina) stamina = totalStamina;
+                }
+
+                pos += direction * temp_speed * Time.deltaTime;
+
+                pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+                pos.y = Mathf.Clamp(pos.y, min.y, max.y);
+
+                transform.position = pos;
             }
-            else if (!isStamina && stamina < totalStamina)
-            {
-                stamina += depleteRate;
-                if (stamina > totalStamina) stamina = totalStamina;
-            }
-
-            pos += direction * temp_speed * Time.deltaTime;
-
-            pos.x = Mathf.Clamp(pos.x, min.x, max.x);
-            pos.y = Mathf.Clamp(pos.y, min.y, max.y);
-
-            transform.position = pos;
         }
 
         public void MouseMove()
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, RayRange))
+            if (!isDead)
             {
-                if (hit.transform.tag == "Ground")
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, RayRange))
                 {
-                    transform.position =
-                        new Vector3(hit.point.x, hit.point.y, transform.position.z);
+                    if (hit.transform.tag == "Ground")
+                    {
+                        transform.position =
+                            new Vector3(hit.point.x, hit.point.y, transform.position.z);
+                    }
                 }
             }
         }
@@ -198,22 +217,24 @@ namespace Bullet.Player
         #region Gameplay
         public void Shoot()
         {
-            if (shotTime < Time.time)
-            { // Object Pool??
-                shotTime = Time.time + bulletFireRate;
+            if (!isDead)
+            {
+                if (shotTime < Time.time)
+                { // Object Pool??
+                    shotTime = Time.time + bulletFireRate;
 
-                if (bulletLevel == 1)
-                {
-                    SpawnBullet(new Transform[] { bulletPositionL1[0].transform });
-                }
-                else if (bulletLevel ==2)
-                {
-                    SpawnBullet(new Transform[] {
+                    if (bulletLevel == 1)
+                    {
+                        SpawnBullet(new Transform[] { bulletPositionL1[0].transform });
+                    }
+                    else if (bulletLevel == 2)
+                    {
+                        SpawnBullet(new Transform[] {
                         bulletPositionL2[0].transform,
                         bulletPositionL2[1].transform });
+                    }
                 }
             }
-
         }
 
         private void SpawnBullet(Transform[] trans)
@@ -233,8 +254,23 @@ namespace Bullet.Player
             if (health < 0)
             {
                 health = 0;
-                //Death();
+                Death();
             }
+        }
+
+        void Death()
+        {
+            Debug.Log("Death");
+            Bullet.PlayerMaster.Instance.Money = score;
+            isDead = true;
+            StartCoroutine(Util.Func.WaitAndRunAction(0.5f, 
+                () => { sr.color = 
+                    new Vector4(sr.color.r, sr.color.g, sr.color.b, 0);
+                    playerCanvas.SetActive(false); }));
+            PlayExplosion();
+            RepeatingExplosion(explosionAmount, delayRange);
+            StartCoroutine(Util.Func.WaitAndRunAction(
+                deathDelay, () => { UI.GUIManager.Instance.ActivateGameOver(); }));
         }
         #endregion
 
@@ -243,6 +279,16 @@ namespace Bullet.Player
         {
             GameObject explosion = Instantiate(explosionPrefab);
             explosion.transform.position = transform.position;
+        }
+
+        void RepeatingExplosion(int amount, float[] delayRange)
+        {
+            if (amount != 0)
+            {
+                StartCoroutine(Util.Func.WaitAndRunAction(
+                    Random.Range(delayRange[0], delayRange[1]), 
+                    () => { RepeatingExplosion(--amount, delayRange); }));
+            }
         }
         #endregion
 
