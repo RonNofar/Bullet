@@ -26,8 +26,6 @@ namespace Bullet {
             StartCoroutine(Util.Func.WaitAndRunAction(
                 initialDelay, 
                 () => { SpawnWave(waves); }));
-
-            
         }
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace Bullet {
             try
             {
                 Debug.Log("Spawning enemy #" + (i + 1));
-                Instantiate(wave.array[i]);
+                SpawnEnemy(wave.array[i]);
                 StartCoroutine(Util.Func.WaitAndRunAction(
                     enemyDelay,
                     () => { SpawnEnemies(wave, ++i); }));
@@ -70,5 +68,32 @@ namespace Bullet {
                 Debug.Log("wave : " + wave.gameObject.name + " is done");
             }
         }
+
+        private void SpawnEnemy(GameObject enemyPrefab)
+        {
+            Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+            Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+            GameObject enemy = (GameObject)Instantiate(enemyPrefab);
+            switch (enemyPrefab.layer)
+            {
+                case 10: // Single Ship layer
+                {
+                    enemy.transform.position = new Vector2(Random.Range(min.x, max.x), max.y); // Gotta account for bounds of enemy
+                    return;
+                }
+                case 11: // Formation Ship layer
+                {
+                    float quarter = (max.x - min.x) / 4;
+                    enemy.transform.position = new Vector2(min.x + Random.Range(1,3)*quarter, max.y); // 25%, 50%, 75%
+                    return;
+                }
+                case 12: // Cluster Ship layer
+                {
+                    float average = (max.x + min.x) / 2;
+                    enemy.transform.position = new Vector2(average, max.y);
+                    return;
+                }
+            }
+        }
     }
-} // don't forget try catch
+}
