@@ -12,18 +12,22 @@ namespace Bullet {
         [Tooltip("The delay before the very first spawn")]
         [SerializeField]
         private float initialDelay = 10f;
-        [Tooltip("The delay between each wave")]
+        [Tooltip("The delay between each wave (time from last spawn of wave)")]
         [SerializeField]
         private float waveDelay = 5f;
         [Tooltip("The spawn delay between each enemy in a wave")]
         [SerializeField]
         private float enemyDelay = 2f;
 
+        private float totalWaveDelay;
+
         private void Start()
         {
             StartCoroutine(Util.Func.WaitAndRunAction(
                 initialDelay, 
                 () => { SpawnWave(waves); }));
+
+            
         }
 
         /// <summary>
@@ -34,18 +38,37 @@ namespace Bullet {
         /// <param name="waveArr"></param>
         private void SpawnWave(Wave[] waveArr, int i = 0)
         {
-            SpawnEnemies(waveArr[i]);
-            StartCoroutine(Util.Func.WaitAndRunAction(
-                waveDelay, 
-                () => { SpawnWave(waveArr, ++i); })); 
+            try
+            {
+                Debug.Log("Spawning wave #" + (i + 1));
+                totalWaveDelay = waveDelay + (enemyDelay * waveArr[i].array.Length); // gets total length of wave and adds waveDelay
+                Debug.Log("totalWaveDelay = " + totalWaveDelay);
+
+                SpawnEnemies(waveArr[i]);
+                StartCoroutine(Util.Func.WaitAndRunAction(
+                    totalWaveDelay,
+                    () => { SpawnWave(waveArr, ++i); }));
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                Debug.Log("Done spawning waves.");
+            }
         }
 
         private void SpawnEnemies(Wave wave, int i = 0)
         {
-            Instantiate(wave.array[i]);
-            StartCoroutine(Util.Func.WaitAndRunAction(
-                enemyDelay,
-                () => { SpawnEnemies(wave, ++i); }));
+            try
+            {
+                Debug.Log("Spawning enemy #" + (i + 1));
+                Instantiate(wave.array[i]);
+                StartCoroutine(Util.Func.WaitAndRunAction(
+                    enemyDelay,
+                    () => { SpawnEnemies(wave, ++i); }));
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                Debug.Log("wave : " + wave.gameObject.name + " is done");
+            }
         }
     }
 } // don't forget try catch
