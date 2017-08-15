@@ -9,7 +9,8 @@ namespace Bullet.Enemy
 
         [SerializeField]
         private GameObject explosionPrefab;
-        float speed;
+        public bool useSpeed;
+        public float speed;
         [SerializeField]
         private float health = 100f;
         public float damage = 20f;
@@ -20,7 +21,7 @@ namespace Bullet.Enemy
         // Use this for initialization
         void Start()
         {
-            speed = 2f;
+            //speed = 2f;
         }
 
         // Update is called once per frame
@@ -29,10 +30,11 @@ namespace Bullet.Enemy
             if (isDown)
             {
                 Vector2 position = transform.position;
+                if (useSpeed) {
+                    position = new Vector2(position.x, position.y - speed * Time.deltaTime);
 
-                position = new Vector2(position.x, position.y - speed * Time.deltaTime);
-
-                transform.position = position;
+                    transform.position = position;
+                }
 
                 Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
 
