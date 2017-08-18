@@ -115,6 +115,16 @@ namespace Bullet.Player
                 if (_score > 9999) _score = 9999;
             }
         }
+
+        private int _money = 0;
+        [HideInInspector]
+        public int money {
+            get { return _money; }
+            set { _money = value;
+                if (_money > 1000000) _money = 1000000;
+                if (_money < 0)       _money = 0;
+            }
+        }
         #endregion
         #endregion
 
@@ -271,6 +281,12 @@ namespace Bullet.Player
             RepeatingExplosion(explosionAmount, delayRange);
             StartCoroutine(Util.Func.WaitAndRunAction(
                 deathDelay, () => { UI.GUIManager.Instance.ActivateGameOver(); }));
+        }
+
+        public void Heal(float amount)
+        {
+            health += amount;
+            if (health > maxHealth) health = maxHealth;
         }
         #endregion
 
