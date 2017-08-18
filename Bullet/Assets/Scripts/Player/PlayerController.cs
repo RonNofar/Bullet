@@ -103,6 +103,10 @@ namespace Bullet.Player
         [SerializeField]
         private GameObject playerCanvas;
 
+        private Collider2D col;
+        private Vector2 colExtent;
+        private Vector2 srExtent;
+
         [HideInInspector]
         public bool isDead = false;
 
@@ -149,6 +153,10 @@ namespace Bullet.Player
 
             sr.enabled = true;
             playerCanvas.SetActive(true);
+
+            col = GetComponent<Collider2D>();
+            colExtent = col.bounds.extents;
+            srExtent = sr.bounds.extents;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -175,11 +183,11 @@ namespace Bullet.Player
                 Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
                 Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-                max.x = max.x - 0.225f; // <-- Use half of player bounds.x here
-                min.x = min.x + 0.225f;
+                max.x = max.x - srExtent.x; // <-- Use half of player bounds.x here
+                min.x = min.x + srExtent.x;
 
-                max.y = max.y - 0.285f;
-                min.y = min.y + 0.285f;
+                max.y = max.y - srExtent.y;
+                min.y = min.y + srExtent.y;
 
                 Vector2 pos = transform.position;
 

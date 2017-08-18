@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Land_Control.unity
+- path: Assets/Scenes/_main.unity
   isLoaded: 1
   isActive: 1
