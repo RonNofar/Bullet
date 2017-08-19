@@ -1,8 +1,1 @@
-sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/_main.unity
-=======
-- path: Assets/Scenes/PrefabBuilder.unity
->>>>>>> origin/felipe
-  isLoaded: 1
-  isActive: 1
+sceneSetups: []

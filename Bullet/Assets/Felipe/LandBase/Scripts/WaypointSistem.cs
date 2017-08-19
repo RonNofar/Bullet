@@ -3,13 +3,13 @@ using System.Collections;
 
 public class WaypointSistem : PlatformController {
 
-    public Vector3[] localWaypoints;
+    private new Vector3[] localWaypoints;
     Vector3[] globalWaypoint;
 
     Vector3 globalWaypointPos;
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
         
         globalWaypoint = new Vector3[localWaypoints.Length];
         for (int i = 0; i < localWaypoints.Length; i++) {
@@ -22,7 +22,7 @@ public class WaypointSistem : PlatformController {
 	void Update () {
 	
 	}
-
+    /*
     void OnDrawGizmos() {
         if (localWaypoints != null) {
             Gizmos.color = Color.blue;
@@ -37,5 +37,5 @@ public class WaypointSistem : PlatformController {
 
             }
         }
-    }
+    }*/
 }

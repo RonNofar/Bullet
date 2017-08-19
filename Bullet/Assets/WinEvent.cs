@@ -7,11 +7,11 @@ namespace Bullet
 {
     public class WinEvent : MonoBehaviour
     {
-        private Player.PlayerController player;
+        private nPlayer.PlayerController player;
 
         private void Awake()
         {
-            player = GameObject.Find("Player").GetComponent<Player.PlayerController>();
+            player = GameObject.Find("Player").GetComponent<nPlayer.PlayerController>();
         }
 
         // Update is called once per frame
@@ -21,6 +21,8 @@ namespace Bullet
 
             if (player.transform.localPosition.y > max.y)
             {
+                float money = GameObject.Find("Player").GetComponent<nPlayer.PlayerController>().money;
+                Bullet.PlayerMaster.Instance.Money += money;
                 SceneManager.LoadScene("Land_Control"); // change to # eventually
             }
         }

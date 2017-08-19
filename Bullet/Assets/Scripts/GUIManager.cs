@@ -8,15 +8,21 @@ namespace Bullet.UI
     public class GUIManager : MonoBehaviour
     {
         [SerializeField]
-        private Player.PlayerController player;
+        private nPlayer.PlayerController nPlayer;
         [SerializeField]
-        private Text score;
+        private Text money;
         [SerializeField]
         private Image[] textImages;
         [SerializeField]
         private Sprite[] numberSprites;
         [SerializeField]
         private GameObject GameOverCanvas;
+        [SerializeField]
+        private Button backButton;
+        [SerializeField]
+        private Button retryButton;
+        [SerializeField]
+        private Text moneyText;
 
         static public GUIManager Instance { get { return _instance; } }
         static protected GUIManager _instance;
@@ -39,9 +45,8 @@ namespace Bullet.UI
 
         void FixedUpdate()
         {
-            /*SetScoreImage(player.score);
-            score.text = player.score.ToString();
-            Debug.Log(score);*/
+            /*SetScoreImage(player.score);*/
+            money.text = "$"+nPlayer.money.ToString();
         }
 
         void SetScoreImage(int score)
@@ -78,7 +83,23 @@ namespace Bullet.UI
 
         public void ActivateGameOver()
         {
+            Cursor.visible = true;
+            money.gameObject.SetActive(false);
             GameOverCanvas.SetActive(true);
+            float pMoney = GameObject.Find("Player").GetComponent<nPlayer.PlayerController>().money;
+            Debug.Log(pMoney);
+            moneyText.text = "GOT $" + (int)pMoney;
+            Bullet.PlayerMaster.Instance.Money += (int)pMoney;
+        }
+
+        public void RetryButton()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("_main");
+        }
+
+        public void BackButton()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Land_Control");
         }
     }
 }

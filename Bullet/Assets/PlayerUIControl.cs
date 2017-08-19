@@ -15,8 +15,8 @@ namespace Bullet
 
         private void FixedUpdate()
         {
-            healthSlider.value = Player.PlayerController.Instance.GetHealthRatio();
-            staminaSlider.value = Player.PlayerController.Instance.GetStaminaRatio();
+            healthSlider.value = nPlayer.PlayerController.Instance.GetHealthRatio();
+            staminaSlider.value = nPlayer.PlayerController.Instance.GetStaminaRatio();
         }
     }
 }

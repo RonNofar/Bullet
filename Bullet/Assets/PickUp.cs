@@ -32,13 +32,13 @@ namespace Bullet
                         }
                     case 1: // HEALTH
                         {
-                            col.gameObject.GetComponent<Player.PlayerController>().Heal(amount);
+                            col.gameObject.GetComponent<nPlayer.PlayerController>().Heal(amount);
                             Destroy(gameObject);
                             return;
                         }
                     case 2: // MONEY
                         {
-                            col.gameObject.GetComponent<Player.PlayerController>().money += (int)amount;
+                            col.gameObject.GetComponent<nPlayer.PlayerController>().money += (int)amount;
                             Destroy(gameObject);
                             return;
                         }

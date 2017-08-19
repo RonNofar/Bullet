@@ -18,6 +18,11 @@ namespace Bullet.Enemy
         [SerializeField]
         private bool isDown = true;
 
+        [SerializeField]
+        private PickUp pickupPrefab;
+        [SerializeField]
+        private float dropRatio; // 0 to 1
+
         // Use this for initialization
         void Start()
         {
@@ -49,7 +54,7 @@ namespace Bullet.Enemy
         {
             if (col.tag == "PlayerBullet")
             {
-                Damage(Player.PlayerController.Instance.GetDamageAmount());
+                Damage(nPlayer.PlayerController.Instance.GetDamageAmount());
             }
             else if (col.tag == "PlayerShip")
             {
@@ -66,6 +71,7 @@ namespace Bullet.Enemy
         void Death()
         {
             PlayExplosion();
+            SpawnPickup();
             Destroy(gameObject);
         }
 
@@ -73,6 +79,14 @@ namespace Bullet.Enemy
         {
             GameObject explosion = Instantiate(explosionPrefab);
             explosion.transform.position = transform.position;
+        }
+
+        void SpawnPickup()
+        {
+            if (Random.Range(0,1) <= dropRatio)
+            {
+                Instantiate(pickupPrefab);
+            }
         }
     }
 }

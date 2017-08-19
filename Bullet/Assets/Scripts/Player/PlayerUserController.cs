@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bullet.Player
+namespace Bullet.nPlayer
 {
     public class PlayerUserController : MonoBehaviour
     {

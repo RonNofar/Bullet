@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bullet.Player
+namespace Bullet.nPlayer
 {
     public class PlayerController : MonoBehaviour
     {
@@ -279,16 +279,19 @@ namespace Bullet.Player
         void Death()
         {
             Debug.Log("Death");
-            Bullet.PlayerMaster.Instance.Money = score;
-            isDead = true;
+            //Bullet.PlayerMaster.Instance.Money = score;
             StartCoroutine(Util.Func.WaitAndRunAction(0.5f, 
                 () => { sr.color = 
                     new Vector4(sr.color.r, sr.color.g, sr.color.b, 0);
                     playerCanvas.SetActive(false); }));
             PlayExplosion();
             RepeatingExplosion(explosionAmount, delayRange);
-            StartCoroutine(Util.Func.WaitAndRunAction(
-                deathDelay, () => { UI.GUIManager.Instance.ActivateGameOver(); }));
+            if (!isDead)
+            {
+                StartCoroutine(Util.Func.WaitAndRunAction(
+                    deathDelay, () => { UI.GUIManager.Instance.ActivateGameOver(); }));
+                isDead = true;
+            }
         }
 
         public void Heal(float amount)

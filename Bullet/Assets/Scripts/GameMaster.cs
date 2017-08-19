@@ -26,7 +26,7 @@ namespace Bullet
 
         void Update()
         {
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Delete))
             {
                 Application.Quit();
             }
@@ -40,9 +40,9 @@ namespace Bullet
             }
 
             if (Input.GetKey(KeyCode.Alpha1))
-                Player.PlayerController.Instance.bulletLevel = 1;
+                nPlayer.PlayerController.Instance.bulletLevel = 1;
             if (Input.GetKey(KeyCode.Alpha2))
-                Player.PlayerController.Instance.bulletLevel = 2;
+                nPlayer.PlayerController.Instance.bulletLevel = 2;
         }
 
         public void Reload()

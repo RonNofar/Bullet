@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bullet.Player
+namespace Bullet.nPlayer
 {
     public class PlayerBullet : MonoBehaviour
     {
@@ -44,7 +44,7 @@ namespace Bullet.Player
                 GameObject explosion = Instantiate(explosionPrefab);
                 explosion.transform.position = transform.position;
                 Destroy(gameObject);
-                Player.PlayerController.Instance.score += Random.Range(100, 500);
+                nPlayer.PlayerController.Instance.score += Random.Range(100, 500);
             }
         }
     }

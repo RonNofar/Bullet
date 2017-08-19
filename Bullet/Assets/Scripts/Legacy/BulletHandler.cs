@@ -6,7 +6,7 @@ namespace Bullet.Items
 {
     public class BulletHandler : MonoBehaviour
     {
-        private Player.PlayerController player;
+        private nPlayer.PlayerController player;
     
         [SerializeField]
         private float maxY = 5f;
@@ -30,7 +30,7 @@ namespace Bullet.Items
         {
             if (collision.transform.tag == "Enemy")
             {
-                Player.PlayerController.Instance.score += Random.Range(50, 250);
+                nPlayer.PlayerController.Instance.score += Random.Range(50, 250);
                 Destroy(gameObject);
             }
         }
