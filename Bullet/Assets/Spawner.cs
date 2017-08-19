@@ -78,7 +78,8 @@ namespace Bullet {
             {
                 case 10: // Single Ship layer
                 {
-                    enemy.transform.position = new Vector2(Random.Range(min.x, max.x), max.y); // Gotta account for bounds of enemy
+                        float tenth = (max.x - min.x) / 10;
+                    enemy.transform.position = new Vector2(Random.Range(min.x + tenth, max.x - tenth), max.y); // Gotta account for bounds of enemy
                     return;
                 }
                 case 11: // Formation Ship layer
