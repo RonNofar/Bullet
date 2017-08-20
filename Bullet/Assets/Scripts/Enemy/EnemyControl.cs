@@ -85,7 +85,7 @@ namespace Bullet.Enemy
         {
             if (Random.Range(0,1) <= dropRatio)
             {
-                Instantiate(pickupPrefab);
+                Instantiate(pickupPrefab, transform.position, transform.rotation);
             }
         }
     }
