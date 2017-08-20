@@ -186,7 +186,7 @@ namespace Bullet.nPlayer
                 max.x = max.x - srExtent.x; // <-- Use half of player bounds.x here
                 min.x = min.x + srExtent.x;
 
-                max.y = max.y - srExtent.y;
+                max.y = max.y + 2 * srExtent.y;
                 min.y = min.y + srExtent.y;
 
                 Vector2 pos = transform.position;
