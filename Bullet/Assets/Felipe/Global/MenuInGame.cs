@@ -33,7 +33,6 @@ public class MenuInGame : MonoBehaviour
             // Do something...
         }
         else if (SceneManager.GetActiveScene().name == "101")
-
         {
             AbortMissionButton.SetActive(false);
             SkipButton.SetActive(true);
@@ -53,7 +52,7 @@ public class MenuInGame : MonoBehaviour
     }
     public void ButtonContinue()
     {
-        
+        Time.timeScale = 1;
         this.gameObject.SetActive(false);
         if(SceneManager.GetActiveScene().name != "101")
         Cursor.visible = false;
