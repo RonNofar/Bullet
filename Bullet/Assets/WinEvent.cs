@@ -9,6 +9,9 @@ namespace Bullet
     {
         private nPlayer.PlayerController player;
 
+        [SerializeField]
+        private GameObject[] hideables;
+
         private void Awake()
         {
             player = GameObject.Find("Player").GetComponent<nPlayer.PlayerController>();

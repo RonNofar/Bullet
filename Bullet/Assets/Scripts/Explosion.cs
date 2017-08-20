@@ -14,11 +14,22 @@ public class Explosion : MonoBehaviour {
     SpriteRenderer sprenderer;
     Color orgColor;
 
+    public bool isColored = false;
+
+    public Color[] colorArr = { Color.red, Color.yellow, Color.green, Color.blue };
+    public Color chosenColor;
+
     private void Awake()
     {
         sprenderer = GetComponent<SpriteRenderer>();
         orgColor = sprenderer.color;
         orgColor.a = 1f;
+
+        if (isColored)
+        {
+            chosenColor = colorArr[Random.Range(0, colorArr.Length)];
+            orgColor = chosenColor;
+        }
     }
 
 	void Start () {
