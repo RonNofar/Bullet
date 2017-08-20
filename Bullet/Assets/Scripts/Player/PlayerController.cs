@@ -6,7 +6,7 @@ namespace Bullet.nPlayer
 {
     public class PlayerController : MonoBehaviour
     {
-m        #region Variables
+        #region Variables
         #region Singleton
         protected static PlayerController _instance;
         [HideInInspector]
