@@ -22,6 +22,7 @@ public class AudioScript3 : MonoBehaviour
     }
     void Start()
     {
+
         timeToChangeTrack = false;
         timeToChangeTrack2 = false;
 
@@ -114,6 +115,26 @@ public class AudioScript3 : MonoBehaviour
     {
         //SoundSourceOBJ[2].GetComponent<AudioSource>().loop=false;
         SoundSourceOBJ[3].GetComponent<AudioSource>().Play();
+    }
+    public void EnemyZap()
+    {
+        //SoundSourceOBJ[2].GetComponent<AudioSource>().loop=false;
+        SoundSourceOBJ[4].GetComponent<AudioSource>().Play();
+    }
+    public void EnemyExplosion()
+    {
+        //SoundSourceOBJ[2].GetComponent<AudioSource>().loop=false;
+        SoundSourceOBJ[3].GetComponent<AudioSource>().Play();
+    }
+    public void MoneyPick()
+    {
+        //SoundSourceOBJ[2].GetComponent<AudioSource>().loop=false;
+        SoundSourceOBJ[5].GetComponent<AudioSource>().Play();
+    }
+    public void HealthPick()
+    {
+        //SoundSourceOBJ[2].GetComponent<AudioSource>().loop=false;
+        SoundSourceOBJ[6].GetComponent<AudioSource>().Play();
     }
 }
 

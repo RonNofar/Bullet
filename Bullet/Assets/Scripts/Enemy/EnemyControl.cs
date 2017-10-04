@@ -7,6 +7,7 @@ namespace Bullet.Enemy
     public class EnemyControl : MonoBehaviour
     {
 
+        public GameObject EnAudioObject;//<--Felipe(trigger audio on shot)
         [SerializeField]
         private GameObject explosionPrefab;
         public bool useSpeed;
@@ -26,6 +27,7 @@ namespace Bullet.Enemy
         // Use this for initialization
         void Start()
         {
+            EnAudioObject = GameObject.Find("Audio3");
             //speed = 2f;
         }
 
@@ -78,6 +80,7 @@ namespace Bullet.Enemy
         void PlayExplosion()
         {
             GameObject explosion = Instantiate(explosionPrefab);
+            EnAudioObject.GetComponent<AudioScript3>().EnemyExplosion();//<--felipe
             explosion.transform.position = transform.position;
         }
 

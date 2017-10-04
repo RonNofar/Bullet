@@ -70,6 +70,7 @@ namespace Bullet.nPlayer
         private GameObject[] bulletPositionL2;
         [SerializeField]
         private GameObject bulletPrefab;
+        public GameObject AudioObject;//<--Felipe(trigger audio on shot)
 
         private float shotTime = 0f;
 
@@ -263,6 +264,7 @@ namespace Bullet.nPlayer
                 bullet.transform.position = trans[i].position;
                 bullet.transform.rotation = trans[i].rotation;
                 bullet.GetComponent<PlayerBullet>().speed = bulletProjectileSpeed;
+                AudioObject.GetComponent<AudioScript3>().FireSound();//<----felipe
             }
         }
 

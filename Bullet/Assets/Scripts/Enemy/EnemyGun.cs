@@ -6,7 +6,7 @@ namespace Bullet.Enemy
 {
     public class EnemyGun : MonoBehaviour
     {
-
+        public GameObject EnAudioObject;//<--Felipe(trigger audio on shot)
         [SerializeField]
         private GameObject EnemyBulletPrefab;
 
@@ -37,6 +37,7 @@ namespace Bullet.Enemy
         // Use this for initialization
         void Start()
         {
+            EnAudioObject=GameObject.Find("Audio3");//<----felipe audio enemyzap
             roundDelay += repeats * repeatDelay;
             StartCoroutine(Util.Func.WaitAndRunAction(delay, () => { FireRound(rounds, roundDelay); }));//FireEnemyBullet(repeats, repeatDelay); }));
             //Invoke("FireEnemyBullet", 1f);
@@ -74,6 +75,7 @@ namespace Bullet.Enemy
 
                 if (playerShip != null)
                 {
+                    EnAudioObject.GetComponent<AudioScript3>().EnemyZap();//<----felipe audio enemyzap
                     GameObject bullet = (GameObject)Instantiate(EnemyBulletPrefab);
                     bullet.transform.position = transform.position;
                     Vector2 direction;
